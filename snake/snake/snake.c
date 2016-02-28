@@ -5,9 +5,9 @@
 
 void main(void)
 {
-	int a = 0;
-	scanf("%d", &a);
-	printf("%d", a);
+	int a = 0, b = 0;
+	scanf("%d %d", &a, &b);
+	printf("a = %d; b = %d;", a, b);
 	getch();
 	return;
 }
