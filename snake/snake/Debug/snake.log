@@ -4,9 +4,9 @@ d:\labs\курсовой\course-project-snake\snake\snake\snake.c(15): warning C
           d:\programs\visual studio 2013\vc\include\stdio.h(283) : see declaration of 'scanf'
 d:\labs\курсовой\course-project-snake\snake\snake\snake.c(31): warning C4098: 'main' : 'void' function returning a value
 d:\labs\курсовой\course-project-snake\snake\snake\snake.c(45): warning C4098: 'main' : 'void' function returning a value
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(83): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(85): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
           d:\programs\visual studio 2013\vc\include\conio.h(131) : see declaration of 'getch'
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(84): warning C4098: 'main' : 'void' function returning a value
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(86): warning C4098: 'main' : 'void' function returning a value
 d:\labs\курсовой\course-project-snake\snake\snake\snake.c(8): warning C4101: 'player' : unreferenced local variable
 d:\labs\курсовой\course-project-snake\snake\snake\snake.c(8): warning C4101: 'number' : unreferenced local variable
   snake.vcxproj -> D:\Labs\курсовой\course-project-snake\snake\Debug\snake.exe

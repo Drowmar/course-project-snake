@@ -54,10 +54,12 @@ void main(void)
 		}
 	}
 	system("cls");
+
 	//генерация еды
 	coordinate_x = 0 + rand() % n;
 	coordinate_y = 0 + rand() % m;
 	arr[coordinate_x][coordinate_y] = '*';
+
 	//вывод
 	printf("  ");
 	for (j = 1; j <= m; j++)
