@@ -85,7 +85,7 @@ void main(void)
 
 	way_x = 0;
 	way_y = 1;
-	while (head_x < n && head_y < m && head_x > 0 && head_y > 0)
+	while (head_x < n && head_y < m && head_x >= 0 && head_y >= 0)
 	{
 		//вывод
 		system("cls");
@@ -103,13 +103,7 @@ void main(void)
 			}
 		}
 		printf("\n");
-		//встреча с едой
-		if (arr[head_x][head_y] == '*')
-		{
-			coordinate_x = 0 + rand() % n;
-			coordinate_y = 0 + rand() % m;
-			arr[coordinate_x][coordinate_y] = '*';
-		}
+		
 		//поворот
 		_sleep(1000); 
 		if (kbhit() != 0)
@@ -137,10 +131,17 @@ void main(void)
 			}
 		}
 		arr[head_x][head_y] = '.';
+		//встреча с едой
 		head_x = head_x + way_x;
 		head_y = head_y + way_y;
 		if (head_y >= m)
 			break;
+		if (arr[head_x][head_y] == '*')
+		{
+			coordinate_x = 0 + rand() % n;
+			coordinate_y = 0 + rand() % m;
+			arr[coordinate_x][coordinate_y] = '*';
+		}
 		arr[head_x][head_y] = 'o';
 	}
 	//освобождение памяти
