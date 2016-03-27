@@ -7,7 +7,7 @@
 
 void main(void)
 {
-	int check, n, m, i, j, fi, coordinate_x, coordinate_y, player, number, flag, head_x, head_y, way_x, way_y;
+	int check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y;
 	char press;
 	srand(time(NULL));
 	char** arr = NULL;
@@ -82,6 +82,8 @@ void main(void)
 	head_x = 0 + rand() % n;
 	head_y = 0 + rand() % m;
 	arr[head_x][head_y] = 'o';
+	tail_x = head_x;
+	tail_y = head_y;
 
 	way_x = 0;
 	way_y = 1;
@@ -105,7 +107,7 @@ void main(void)
 		printf("\n");
 		
 		//поворот
-		_sleep(1000); 
+		_sleep(800); 
 		if (kbhit() != 0)
 		{
 			press = (char)getch();
@@ -129,15 +131,20 @@ void main(void)
 				way_x = 1;
 				way_y = 0;
 			}
+			//когда много клавиш нажато
+			while (kbhit() != 0)
+				((char)getch() != '\n'); 
 		}
 		arr[head_x][head_y] = '.';
 		//встреча с едой
 		head_x = head_x + way_x;
 		head_y = head_y + way_y;
-		if (head_y >= m)
+		if (head_x >= n || head_y >= m || head_x < 0 || head_y < 0)
 			break;
 		if (arr[head_x][head_y] == '*')
 		{
+			tail_x = tail_x - way_x;
+			tail_y = tail_y - way_y;
 			coordinate_x = 0 + rand() % n;
 			coordinate_y = 0 + rand() % m;
 			arr[coordinate_x][coordinate_y] = '*';
