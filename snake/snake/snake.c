@@ -83,5 +83,6 @@ void main(void)
 	free(arr);
 
 	getch();
+	_sleep(600);
 	return 0;
 }
