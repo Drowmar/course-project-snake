@@ -178,13 +178,13 @@ void main(void)
 		//вывод
 		system("cls");
 		printf("  ");
-		for (j = 1; j <= m; j++)
+		for (j = 0; j < m; j++)
 		{
 			printf("%3d", j);
 		}
 		for (i = 0; i < n; i++)
 		{
-			printf("\n%2d", i + 1);
+			printf("\n%2d", i);
 			for (j = 0; j < m; j++)
 			{
 				printf("%3c", arr[i][j]);
@@ -197,7 +197,6 @@ void main(void)
 		EdgeP = EdgeGive(&Edge);
 		if (kbhit() != 0)
 		{
-			Add(&Edge, way_x, way_y, head_x, head_y);
 			press = (char)getch();
 			if (press == 'w')
 			{
@@ -221,10 +220,11 @@ void main(void)
 			}
 			//когда много клавиш нажато
 			while (kbhit() != 0)
-				((char)getch() != '\n'); 
+				((char)getch() != '\n');
+			Add(&Edge, way_x, way_y, head_x, head_y);
 		}
 		//если одинокая
-		arr[head_x][head_y] = '.';
+		arr[tail_x][tail_y] = '.';
 		//встреча с едой
 		head_x = head_x + way_x;
 		head_y = head_y + way_y;
@@ -235,15 +235,21 @@ void main(void)
 			coordinate_x = 0 + rand() % n;
 			coordinate_y = 0 + rand() % m;
 			arr[coordinate_x][coordinate_y] = '*';
+			arr[tail_x][tail_y] = 'o';
+			tail_x = tail_x - wayt_x;
+			tail_y = tail_y - wayt_y;
 		}
 		if (EdgeP->start != NULL)
 		{
-			if ((tail_x + wayt_x == EdgeP->start->addr_x) && (tail_y + wayt_y == EdgeP->start->addr_y))
+			if ((tail_x == EdgeP->start->addr_x) && (tail_y == EdgeP->start->addr_y))
 			{
 				wayt_x = EdgeP->start->wt_x;
-				wayt_y = EdgeP->start->wt_y;
+				wayt_y = EdgeP->start->wt_y; 
+				DeleteEdge(&Edge);
 			}
 		}
+		tail_x = tail_x + wayt_x;
+		tail_y = tail_y + wayt_y;
 		//если одинокая
 		arr[head_x][head_y] = 'o';
 	}
