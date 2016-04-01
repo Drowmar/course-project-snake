@@ -4,10 +4,94 @@
 #include <string.h>
 #include <Windows.h>
 
+struct List
+{
+	int wt_x;
+	int wt_y;
+	int addr_x;
+	int addr_y;
+	struct List*next;
+};
 
+struct ListEdge
+{
+	struct List*start;
+	struct List*end;
+};
+
+void Init(struct ListEdge * lstp)
+{
+	lstp->start = NULL;
+	lstp->end = NULL;
+}
+
+void Add(struct ListEdge* lstp, int x, int y, int a_x, int a_y)
+{
+	struct List* temp = (struct List*)malloc(sizeof(struct List));
+
+	temp->next = NULL;
+	temp->wt_x = x;
+	temp->wt_y = y;
+	temp->addr_x = a_x;
+	temp->addr_y = a_y;
+
+	if (lstp->start == NULL)
+	{
+		lstp->start = temp;
+	}
+	else
+	{
+		lstp->end->next = temp;
+	}
+
+	lstp->end = temp;
+}
+
+void DeleteEdge(struct ListEdge* lstp)
+{
+	struct List* del = lstp->start;
+	lstp->start = lstp->start->next;
+	if (lstp->start == NULL)
+		lstp->end = NULL;
+	free(del);
+}
+
+void Clear(struct ListEdge* list)
+{
+	struct List* del = list->start;
+	struct List* temp;
+	while (del != NULL)
+	{
+		temp = del;
+		del = del->next;
+		free(temp);
+	}
+
+	list->start = NULL;
+	list->end = NULL;
+}
+
+void Write(struct ListEdge* list)
+{
+	puts("\n");
+	struct List* temp = list->start;
+	while (temp != NULL)
+	{
+		printf("%d %d\n", temp->wt_x, temp->wt_y);
+		temp = temp->next;
+	}
+}
+struct ListEdge* EdgeGive(struct ListEdge* lstp)
+{
+	return lstp;
+}
 void main(void)
 {
-	int check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y;
+	struct ListEdge Edge;
+	struct ListEdge* EdgeP;
+	struct List* ls;
+	Init(&Edge);
+	int check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y;
 	char press;
 	srand(time(NULL));
 	char** arr = NULL;
@@ -87,6 +171,8 @@ void main(void)
 
 	way_x = 0;
 	way_y = 1;
+	wayt_x = way_x;
+	wayt_y = way_y;
 	while (head_x < n && head_y < m && head_x >= 0 && head_y >= 0)
 	{
 		//вывод
@@ -107,9 +193,11 @@ void main(void)
 		printf("\n");
 		
 		//поворот
-		_sleep(800); 
+		_sleep(800);
+		EdgeP = EdgeGive(&Edge);
 		if (kbhit() != 0)
 		{
+			Add(&Edge, way_x, way_y, head_x, head_y);
 			press = (char)getch();
 			if (press == 'w')
 			{
@@ -135,6 +223,7 @@ void main(void)
 			while (kbhit() != 0)
 				((char)getch() != '\n'); 
 		}
+		//если одинокая
 		arr[head_x][head_y] = '.';
 		//встреча с едой
 		head_x = head_x + way_x;
@@ -143,12 +232,19 @@ void main(void)
 			break;
 		if (arr[head_x][head_y] == '*')
 		{
-			tail_x = tail_x - way_x;
-			tail_y = tail_y - way_y;
 			coordinate_x = 0 + rand() % n;
 			coordinate_y = 0 + rand() % m;
 			arr[coordinate_x][coordinate_y] = '*';
 		}
+		if (EdgeP->start != NULL)
+		{
+			if ((tail_x + wayt_x == EdgeP->start->addr_x) && (tail_y + wayt_y == EdgeP->start->addr_y))
+			{
+				wayt_x = EdgeP->start->wt_x;
+				wayt_y = EdgeP->start->wt_y;
+			}
+		}
+		//если одинокая
 		arr[head_x][head_y] = 'o';
 	}
 	//освобождение памяти
@@ -157,5 +253,6 @@ void main(void)
 		free(arr[i]);
 	}
 	free(arr);
+	Clear(&Edge);
 	return 0;
 }
