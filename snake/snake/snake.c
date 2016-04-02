@@ -96,16 +96,20 @@ char kind_edge(int x, int y)
 		return '>';
 	if (x == 1 && y == 0)
 		return 'V';
+	return 'o';
 }
 void main(void)
 {
 	struct ListEdge Edge;
 	struct ListEdge* EdgeP;
-	struct List* ls;
 	Init(&Edge);
 	int check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y, length;
 	char press;
-	srand(time(NULL));
+	int stime;
+	long ltime;
+	ltime = time(NULL);
+	stime = (unsigned)ltime / 2;
+	srand(stime);
 	char** arr = NULL;
 	//проверка на ввод
 	printf("Input size.\n");
@@ -155,12 +159,12 @@ void main(void)
 	system("cls");
 
 	//генерация еды
-	coordinate_x = 0 + rand() % n;
-	coordinate_y = 0 + rand() % m;
+	coordinate_x = 0 + rand() % (n - 1);
+	coordinate_y = 0 + rand() % (m - 1);
 	arr[coordinate_x][coordinate_y] = '*';
 
-	head_x = 0 + rand() % n;
-	head_y = 0 + rand() % m;
+	head_x = 0 + rand() % (n - 1);
+	head_y = 0 + rand() % (m - 1);
 	arr[head_x][head_y] = '>';
 	tail_x = head_x;
 	tail_y = head_y;
@@ -190,7 +194,7 @@ void main(void)
 		printf("\n");
 		
 		//поворот
-		_sleep(500);
+		Sleep(500);
 		EdgeP = EdgeGive(&Edge);
 		if (_kbhit() != 0)
 		{
@@ -230,11 +234,10 @@ void main(void)
 		{
 			do
 			{
-				coordinate_x = 0 + rand() % n;
-				coordinate_y = 0 + rand() % m;
-			} while (arr[coordinate_x][coordinate_y] != '.');
+				coordinate_x = 0 + rand() % (n - 1);
+				coordinate_y = 0 + rand() % (m - 1);
+			} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
 			arr[coordinate_x][coordinate_y] = '*';
-			arr[tail_x][tail_y] = 'o';
 			tail_x = tail_x - wayt_x;
 			tail_y = tail_y - wayt_y;
 			length = length + 1;
