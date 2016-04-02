@@ -103,9 +103,8 @@ void main(void)
 	struct ListEdge Edge;
 	struct ListEdge* EdgeP;
 	Init(&Edge);
-	int check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y, length;
+	int check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y, length, stime;
 	char press;
-	int stime;
 	long ltime;
 	ltime = time(NULL);
 	stime = (unsigned)ltime / 2;
@@ -159,12 +158,12 @@ void main(void)
 	system("cls");
 
 	//генерация еды
-	coordinate_x = 0 + rand() % (n - 1);
-	coordinate_y = 0 + rand() % (m - 1);
+	coordinate_x = 0 + rand() % n;
+	coordinate_y = 0 + rand() % m;
 	arr[coordinate_x][coordinate_y] = '*';
 
-	head_x = 0 + rand() % (n - 1);
-	head_y = 0 + rand() % (m - 1);
+	head_x = 0 + rand() % n;
+	head_y = 0 + rand() % m;
 	arr[head_x][head_y] = '>';
 	tail_x = head_x;
 	tail_y = head_y;
@@ -174,6 +173,7 @@ void main(void)
 	wayt_x = way_x;
 	wayt_y = way_y;
 	length = 1;
+	flag = 0;
 	while (head_x < n && head_y < m && head_x >= 0 && head_y >= 0)
 	{
 		//вывод
@@ -232,10 +232,16 @@ void main(void)
 			break;
 		if (arr[head_x][head_y] == '*')
 		{
+			if (length + 1 == n * m)
+			{
+				flag = 1;
+				length = length + 1;
+				break;
+			}
 			do
 			{
-				coordinate_x = 0 + rand() % (n - 1);
-				coordinate_y = 0 + rand() % (m - 1);
+				coordinate_x = 0 + rand() % n;
+				coordinate_y = 0 + rand() % m;
 			} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
 			arr[coordinate_x][coordinate_y] = '*';
 			tail_x = tail_x - wayt_x;
@@ -264,8 +270,11 @@ void main(void)
 	free(arr);
 	Clear(&Edge);
 	system("cls");
+	if (flag != 1)
+		puts("GAME OVER.");
+	else
+		puts("YOU WIN!!!");
 	printf("You length: %d.\n", length);
-	puts("GAME OVER.");
 	_getch();
 	return ;
 }

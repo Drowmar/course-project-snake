@@ -1,5 +1,5 @@
 ﻿  snake.c
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(110): warning C4013: 'time' undefined; assuming extern returning int
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(118): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(109): warning C4013: 'time' undefined; assuming extern returning int
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(117): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           d:\programs\visual studio 2013\vc\include\stdio.h(283) : see declaration of 'scanf'
   snake.vcxproj -> D:\Labs\курсовой\course-project-snake\snake\Debug\snake.exe
