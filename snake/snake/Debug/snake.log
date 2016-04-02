@@ -1,19 +1,22 @@
 ﻿  snake.c
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(96): warning C4013: 'time' undefined; assuming extern returning int
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(102): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(108): warning C4013: 'time' undefined; assuming extern returning int
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(114): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           d:\programs\visual studio 2013\vc\include\stdio.h(283) : see declaration of 'scanf'
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(118): warning C4098: 'main' : 'void' function returning a value
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(132): warning C4098: 'main' : 'void' function returning a value
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(196): warning C4996: '_sleep': This function or variable has been superceded by newer library or operating system functionality. Consider using Sleep instead. See online help for details.
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(130): warning C4098: 'main' : 'void' function returning a value
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(144): warning C4098: 'main' : 'void' function returning a value
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(193): warning C4996: '_sleep': This function or variable has been superceded by newer library or operating system functionality. Consider using Sleep instead. See online help for details.
           d:\programs\visual studio 2013\vc\include\stdlib.h(911) : see declaration of '_sleep'
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(198): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _kbhit. See online help for details.
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(195): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _kbhit. See online help for details.
           d:\programs\visual studio 2013\vc\include\conio.h(133) : see declaration of 'kbhit'
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(200): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(197): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
           d:\programs\visual studio 2013\vc\include\conio.h(131) : see declaration of 'getch'
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(222): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _kbhit. See online help for details.
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(219): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _kbhit. See online help for details.
           d:\programs\visual studio 2013\vc\include\conio.h(133) : see declaration of 'kbhit'
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(223): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(220): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
           d:\programs\visual studio 2013\vc\include\conio.h(131) : see declaration of 'getch'
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(263): warning C4098: 'main' : 'void' function returning a value
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(92): warning C4101: 'ls' : unreferenced local variable
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(266): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _getch. See online help for details.
+          d:\programs\visual studio 2013\vc\include\conio.h(131) : see declaration of 'getch'
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(267): warning C4098: 'main' : 'void' function returning a value
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(104): warning C4101: 'ls' : unreferenced local variable
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(99): warning C4715: 'kind_edge' : not all control paths return a value
   snake.vcxproj -> D:\Labs\курсовой\course-project-snake\snake\Debug\snake.exe
