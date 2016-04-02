@@ -111,10 +111,16 @@ void main(void)
 	srand(stime);
 	char** arr = NULL;
 	//проверка на ввод
-	printf("Input size.\n");
+	printf("Input size. Max lines 23. Max columns 25.\n");
 	do
 	{
 		check = scanf("%d%d", &n, &m);
+		if (check == 2 && (n > 23 || m > 25 || n <= 1 || m <= 1))
+		{
+			flag = 1;
+			printf("Incorrect input!\n");
+			continue;
+		}
 		flag = 0;
 		if (getchar() != '\n')
 		{
@@ -123,7 +129,7 @@ void main(void)
 		}
 		if (flag == 1 || check != 2)
 			printf("Incorrect input!\n");
-	} while (check != 2 || flag == 1);
+	} while (check != 2 || flag == 1 );
 	//выделение памяти
 	arr = (char**)malloc(n * sizeof(char*));
 	if (arr == NULL)
@@ -158,15 +164,17 @@ void main(void)
 	system("cls");
 
 	//генерация еды
-	coordinate_x = 0 + rand() % n;
-	coordinate_y = 0 + rand() % m;
-	arr[coordinate_x][coordinate_y] = '*';
-
 	head_x = 0 + rand() % n;
 	head_y = 0 + rand() % m;
 	arr[head_x][head_y] = '>';
 	tail_x = head_x;
 	tail_y = head_y;
+	do
+	{
+		coordinate_x = 0 + rand() % n;
+		coordinate_y = 0 + rand() % m;
+	} while (arr[coordinate_x][coordinate_y] != '.');
+	arr[coordinate_x][coordinate_y] = '*';
 
 	way_x = 0;
 	way_y = 1;
@@ -194,7 +202,7 @@ void main(void)
 		printf("\n");
 		
 		//поворот
-		Sleep(500);
+		Sleep(400);
 		EdgeP = EdgeGive(&Edge);
 		if (_kbhit() != 0)
 		{
