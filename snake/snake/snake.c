@@ -86,7 +86,7 @@ struct ListEdge* EdgeGive(struct ListEdge* lstp)
 	return lstp;
 }
 
-int kind_edge(int x, int y)
+char kind_edge(int x, int y)
 {
 	if (x == -1 && y == 0)
 		return '^';
@@ -127,7 +127,7 @@ void main(void)
 	{
 		printf("ERROR");
 		free(arr);
-		return 0;
+		return ;
 	}
 	for (i = 0; i < n; i++)
 	{
@@ -141,7 +141,7 @@ void main(void)
 				free(arr[fi]);
 			}
 			free(arr);
-			return 0;
+			return ;
 		}
 	}
 	//инициализация
@@ -192,9 +192,9 @@ void main(void)
 		//поворот
 		_sleep(500);
 		EdgeP = EdgeGive(&Edge);
-		if (kbhit() != 0)
+		if (_kbhit() != 0)
 		{
-			press = (char)getch();
+			press = (char)_getch();
 			if (press == 'w')
 			{
 				way_x = -1;
@@ -216,8 +216,8 @@ void main(void)
 				way_y = 0;
 			}
 			//когда много клавиш нажато
-			while (kbhit() != 0)
-				((char)getch() != '\n');
+			while (_kbhit() != 0)
+				((char)_getch() != '\n');
 			Add(&Edge, way_x, way_y, head_x, head_y);
 		}
 		arr[tail_x][tail_y] = '.';
@@ -263,6 +263,6 @@ void main(void)
 	system("cls");
 	printf("You length: %d.\n", length);
 	puts("GAME OVER.");
-	getch();
-	return 0;
+	_getch();
+	return ;
 }
