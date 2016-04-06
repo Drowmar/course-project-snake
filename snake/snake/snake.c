@@ -171,11 +171,11 @@ void main(void)
 			return ;
 		}
 	}
-	printf("Input difficulty:\n1 - low;\n2 - medium;\n3 - hard.\n"); 
+	printf("Input difficulty:\n1 - easy;\n2 - medium;\n3 - hard.\n4 - expert.\n"); 
 	do
 	{
 		check = scanf("%d", &choice);
-		if (check == 1 && choice != 1 && choice != 2 && choice != 3)
+		if (check == 1 && choice != 1 && choice != 2 && choice != 3 && choice != 4)
 		{
 			flag = 1;
 			printf("Incorrect input!\n");
@@ -193,13 +193,16 @@ void main(void)
 	} while (check != 1 || flag == 1);
 	switch (choice) {
 	case 1:
-		defficulty = 600;
+		defficulty = 400;
 		break;
 	case 2:
-		defficulty = 300;
+		defficulty = 250;
 		break;
 	case 3:
 		defficulty = 100;
+		break;
+	case 4:
+		defficulty = 80;
 		break;
 	}
 	//инициализация
@@ -213,8 +216,8 @@ void main(void)
 	system("cls");
 
 	//генерация еды
-	head_x = 0 + rand() % n;
-	head_y = 0 + rand() % m;
+	head_x = (0 + rand() % n)/2;
+	head_y = (0 + rand() % m)/2;
 	arr[head_x][head_y] = '>';
 	tail_x = head_x;
 	tail_y = head_y;
@@ -266,6 +269,7 @@ void main(void)
 				way_y = 0;
 				break;
 			case '0':
+				printf("Input something to start.\n");
 				_getch();
 				break;
 			}
