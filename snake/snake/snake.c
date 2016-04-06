@@ -71,16 +71,6 @@ void Clear(struct ListEdge* list)
 	list->end = NULL;
 }
 
-void Write(struct ListEdge* list)
-{
-	puts("\n");
-	struct List* temp = list->start;
-	while (temp != NULL)
-	{
-		printf("%d %d\n", temp->wt_x, temp->wt_y);
-		temp = temp->next;
-	}
-}
 struct ListEdge* EdgeGive(struct ListEdge* lstp)
 {
 	return lstp;
@@ -98,12 +88,40 @@ char kind_edge(int x, int y)
 		return 'V';
 	return 'o';
 }
+
+void write_arr(char* arr[], int n, int m)
+{
+	int i, j;
+	for (j = 0; j <= m + 1; j++)
+	{
+		printf("%2c", '%');
+	}
+	for (i = 0; i < n; i++)
+	{
+		printf("\n%2c", '%');
+		for (j = 0; j < m; j++)
+		{
+			if (arr[i][j] != '.')
+				printf("%2c", arr[i][j]);
+			else
+				printf("  ");
+		}
+		printf("%2c", '%');
+	}
+	printf("\n");
+	for (j = 0; j <= m + 1; j++)
+	{
+		printf("%2c", '%');
+	}
+	printf("\n");
+}
 void main(void)
 {
+	puts("Game snake.\nYou control the snake, but the snake is moving itself.\nYour goal is to eat the food and grow as much as possible.\nYou win when your snake will occupy the entire field.\nControl:\nw - up;\na - right;\nd - left;\ns - down;\nIf you want pause - press 0(number).");
 	struct ListEdge Edge;
 	struct ListEdge* EdgeP;
 	Init(&Edge);
-	int check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y, length, stime;
+	int choice, defficulty, check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y, length, stime;
 	char press;
 	long ltime;
 	ltime = time(NULL);
@@ -153,6 +171,37 @@ void main(void)
 			return ;
 		}
 	}
+	printf("Input difficulty:\n1 - low;\n2 - medium;\n3 - hard.\n"); 
+	do
+	{
+		check = scanf("%d", &choice);
+		if (check == 1 && choice != 1 && choice != 2 && choice != 3)
+		{
+			flag = 1;
+			printf("Incorrect input!\n");
+			fflush(stdin);
+			continue;
+		}
+		flag = 0;
+		if (getchar() != '\n')
+		{
+			flag = 1;
+			fflush(stdin);
+		}
+		if (flag == 1 || check != 1)
+			printf("Incorrect input!\n");
+	} while (check != 1 || flag == 1);
+	switch (choice) {
+	case 1:
+		defficulty = 600;
+		break;
+	case 2:
+		defficulty = 300;
+		break;
+	case 3:
+		defficulty = 100;
+		break;
+	}
 	//инициализация
 	for (i = 0; i < n; i++)
 	{
@@ -182,50 +231,43 @@ void main(void)
 	wayt_y = way_y;
 	length = 1;
 	flag = 0;
+
+	write_arr(arr, n, m);
+	printf("Input something to start.\n"); 
+	_getch();
 	while (head_x < n && head_y < m && head_x >= 0 && head_y >= 0)
 	{
 		//вывод
 		system("cls");
-		printf("  ");
-		for (j = 0; j < m; j++)
-		{
-			printf("%3d", j);
-		}
-		for (i = 0; i < n; i++)
-		{
-			printf("\n%2d", i);
-			for (j = 0; j < m; j++)
-			{
-				printf("%3c", arr[i][j]);
-			}
-		}
-		printf("\n");
+		write_arr(arr, n, m);
 		
 		//поворот
-		Sleep(400);
+		Sleep(defficulty);
 		EdgeP = EdgeGive(&Edge);
 		if (_kbhit() != 0)
 		{
-			press = (char)_getch();
-			if (press == 'w')
+			press = (char)_getch(); 
+			switch (press)
 			{
+			case 'w':
 				way_x = -1;
 				way_y = 0;
-			}
-			if (press == 'a')
-			{
+				break;
+			case 'a':
 				way_x = 0;
 				way_y = -1;
-			}
-			if (press == 'd')
-			{
+				break;
+			case 'd':
 				way_x = 0;
 				way_y = 1;
-			}
-			if (press == 's')
-			{
+				break;
+			case 's':
 				way_x = 1;
 				way_y = 0;
+				break;
+			case '0':
+				_getch();
+				break;
 			}
 			//когда много клавиш нажато
 			while (_kbhit() != 0)
@@ -283,6 +325,9 @@ void main(void)
 	else
 		puts("YOU WIN!!!");
 	printf("You length: %d.\n", length);
+
+	_getch();
+	Sleep(600);
 	_getch();
 	return ;
 }
