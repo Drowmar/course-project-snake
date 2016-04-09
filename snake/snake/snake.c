@@ -128,12 +128,18 @@ void main(void)
 	stime = (unsigned)ltime / 2;
 	srand(stime);
 	char** arr = NULL;
+
+	COORD position;
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	position.X = 0;
+	position.Y = 0;
+
 	//проверка на ввод
-	printf("Input size. Max lines 23. Max columns 25.\n");
+	printf("Input size. Max lines 21. Max columns 25.\n");
 	do
 	{
 		check = scanf("%d%d", &n, &m);
-		if (check == 2 && (n > 23 || m > 25 || n <= 1 || m <= 1))
+		if (check == 2 && (n > 22 || m > 25 || n <= 1 || m <= 1))
 		{
 			flag = 1;
 			printf("Incorrect input!\n");
@@ -241,7 +247,8 @@ void main(void)
 	while (head_x < n && head_y < m && head_x >= 0 && head_y >= 0)
 	{
 		//вывод
-		system("cls");
+		//system("cls");        
+		SetConsoleCursorPosition(hConsole, position);
 		write_arr(arr, n, m);
 		
 		//поворот
