@@ -115,13 +115,57 @@ void write_arr(char* arr[], int n, int m)
 	}
 	printf("\n");
 }
+void lvl_2(char* arr[], int n, int m)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			arr[i][j] = '.';
+		}
+	}
+	i = 2;
+	for (j = 3; j < 7; j++)
+		arr[i][j] = '%';
+	j = 7;
+	for (i = 6; i < 9; i++)
+		arr[i][j] = '%';
+	i = 12;
+	for (j = 8; j < 12; j++)
+		arr[i][j] = '%';
+}
+
+void lvl_3(char* arr[], int n, int m)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			arr[i][j] = '.';
+		}
+	}
+	j = 3;
+	for (i = 0; i < 4; i++)
+		arr[i][j] = '%'; j = 3;
+	j = 11;
+	for (i = 0; i < 4; i++)
+		arr[i][j] = '%'; j = 3;
+	j = 3;
+	for (i = 11; i < 15; i++)
+		arr[i][j] = '%'; j = 3;
+	j = 11;
+	for (i = 11; i < 15; i++)
+		arr[i][j] = '%';
+}
 void main(void)
 {
 	puts("Game snake.\nYou control the snake, but the snake is moving itself.\nYour goal is to eat the food and grow as much as possible.\nYou win when your snake will occupy the entire field.\nControl:\nw - up;\na - right;\nd - left;\ns - down;\nIf you want pause - press 0(number).");
 	struct ListEdge Edge;
 	struct ListEdge* EdgeP;
 	Init(&Edge);
-	int choice, defficulty, check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y, length, stime;
+	int level, choice, defficulty, check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y, length, stime;
 	char press;
 	long ltime;
 	ltime = time(NULL);
@@ -240,7 +284,7 @@ void main(void)
 	wayt_y = way_y;
 	length = 1;
 	flag = 0;
-
+	level = 1;
 	write_arr(arr, n, m);
 	printf("Input something to start.\n"); 
 	_getch();
@@ -322,6 +366,71 @@ void main(void)
 		tail_y = tail_y + wayt_y;
 		arr[head_x][head_y] = kind_edge(way_x, way_y);
 		arr[tail_x][tail_y] = kind_edge(wayt_x, wayt_y);
+		if (length == 10 && level == 1)
+		{
+			lvl_2(arr, n, m); 
+			do
+			{
+				head_x = (0 + rand() % n) / 2;
+				head_y = (0 + rand() % m) / 2;
+			} while (arr[head_x][head_y] != '.');
+			arr[head_x][head_y] = '>';
+			tail_x = head_x;
+			tail_y = head_y;
+			do
+			{
+				coordinate_x = 0 + rand() % n;
+				coordinate_y = 0 + rand() % m;
+			} while (arr[coordinate_x][coordinate_y] != '.');
+			arr[coordinate_x][coordinate_y] = '*';
+
+			way_x = 0;
+			way_y = 1;
+			wayt_x = way_x;
+			wayt_y = way_y;
+			length = 1;
+			flag = 0;
+
+			Clear(&Edge);
+			Init(&Edge);
+			SetConsoleCursorPosition(hConsole, position);
+			write_arr(arr, n, m);
+			level = 2;
+			printf("Input something to start.\n");
+			_getch();
+		}if (length == 10 && level == 2)
+		{
+			lvl_3(arr, n, m);
+			do
+			{
+				head_x = (0 + rand() % n) / 2;
+				head_y = (0 + rand() % m) / 2;
+			} while (arr[head_x][head_y] != '.');
+			arr[head_x][head_y] = '>';
+			tail_x = head_x;
+			tail_y = head_y;
+			do
+			{
+				coordinate_x = 0 + rand() % n;
+				coordinate_y = 0 + rand() % m;
+			} while (arr[coordinate_x][coordinate_y] != '.');
+			arr[coordinate_x][coordinate_y] = '*';
+
+			way_x = 0;
+			way_y = 1;
+			wayt_x = way_x;
+			wayt_y = way_y;
+			length = 1;
+			flag = 0;
+
+			Clear(&Edge);
+			Init(&Edge);
+			SetConsoleCursorPosition(hConsole, position);
+			write_arr(arr, n, m);
+			level = 3;
+			printf("Input something to start.\n");
+			_getch();
+		}
 	}
 	//освобождение памяти
 	for (i = 0; i < n; i++)
