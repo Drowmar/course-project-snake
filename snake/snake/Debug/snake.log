@@ -1,7 +1,15 @@
 ﻿  snake.c
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(171): warning C4013: 'time' undefined; assuming extern returning int
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(185): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(422): warning C4013: 'time' undefined; assuming extern returning int
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(436): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           d:\programs\visual studio 2013\vc\include\stdio.h(283) : see declaration of 'scanf'
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(227): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(478): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           d:\programs\visual studio 2013\vc\include\stdio.h(283) : see declaration of 'scanf'
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(625): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(632): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(639): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(646): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(653): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(660): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(667): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(682): warning C4020: 'init_lvl' : too many actual parameters
   snake.vcxproj -> D:\Labs\курсовой\course-project-snake\snake\Debug\snake.exe

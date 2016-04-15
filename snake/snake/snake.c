@@ -115,6 +115,36 @@ void write_arr(char* arr[], int n, int m)
 	}
 	printf("\n");
 }
+void init_lvl(char* arr[], int n, int m, int* head_x, int* head_y, int* tail_x, int* tail_y, int* coordinate_x, int* coordinate_y, int* way_x, int* way_y, int* wayt_x, int* wayt_y, struct ListEdge* Edge, int* length, int* flag)
+{
+	do
+	{
+		*head_x = (0 + rand() % n) / 2;
+		*head_y = (0 + rand() % m) / 2;
+	} while (arr[*head_x][*head_y] != '.');
+	arr[*head_x][*head_y] = '>';
+	*tail_x = *head_x;
+	*tail_y = *head_y;
+	do
+	{
+		*coordinate_x = 0 + rand() % n;
+		*coordinate_y = 0 + rand() % m;
+	} while (arr[*coordinate_x][*coordinate_y] != '.');
+	arr[*coordinate_x][*coordinate_y] = '*';
+
+	*way_x = 0;
+	*way_y = 1;
+	*wayt_x = *way_x;
+	*wayt_y = *way_y;
+	*length = 1;
+	*flag = 0;
+
+	Clear(Edge);
+	Init(Edge);
+	write_arr(arr, n, m);
+	printf("Input something to start.\n");
+	_getch();
+}
 void lvl_2(char* arr[], int n, int m)
 {
 	int i, j;
@@ -159,6 +189,227 @@ void lvl_3(char* arr[], int n, int m)
 	for (i = 11; i < 15; i++)
 		arr[i][j] = '%';
 }
+void lvl_4(char* arr[], int n, int m)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			arr[i][j] = '.';
+		}
+	}
+	for (i = 2; i < 4; i++)
+	{
+		for (j = 3; j < 6; j++)
+		{
+			arr[i][j] = '%';
+		}
+	}
+	for (i = 3; i < 5; i++)
+	{
+		for (j = 9; j < 12; j++)
+		{
+			arr[i][j] = '%';
+		}
+	}
+	arr[13][2] = '%';
+	arr[14][2] = '%';
+	arr[13][12] = '%';
+	arr[14][12] = '%';
+	j = 4;
+	for (i = 11; i < 15; i++)
+	{
+		arr[i][j] = '%';
+	}
+	j = 9;
+	for (i = 11; i < 15; i++)
+	{
+		arr[i][j] = '%';
+	}
+}
+void lvl_5(char* arr[], int n, int m)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			arr[i][j] = '.';
+		}
+	}
+	for (i = 0; i < n; i++)
+	{
+		if (i == 4)
+			continue;
+		if (i == 7)
+			continue;
+		if (i == 10)
+			continue;
+		arr[i][6] = '%';
+		arr[i][7] = '%';
+	}
+	i = 4;
+	for (j = 12; j < 15; j++)
+	{
+		arr[i][j] = '%';
+	}
+	i = 10;
+	for (j = 12; j < 15; j++)
+	{
+		arr[i][j] = '%';
+	}
+}
+void lvl_6(char* arr[], int n, int m)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			arr[i][j] = '.';
+		}
+	}
+	i = 3;
+	for (j = 2; j < 13; j++)
+	{
+		if (j == 6)
+			continue;
+		if (j == 7)
+			continue;
+		if (j == 8)
+			continue;
+		arr[i][j] = '%';
+	}
+	i = 9;
+	for (j = 2; j < 13; j++)
+	{
+		if (j == 7)
+			continue;
+		arr[i][j] = '%';
+	}
+	arr[4][3] = '%';
+	arr[5][3] = '%';
+	arr[4][11] = '%';
+	arr[5][11] = '%';
+	arr[10][5] = '%';
+	arr[11][5] = '%';
+	arr[10][9] = '%';
+	arr[11][9] = '%';
+}
+void lvl_7(char* arr[], int n, int m)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			arr[i][j] = '.';
+		}
+	}
+	i = 14;
+	for (j = 0; j < m; j++)
+	{
+		arr[i][j] = '%';
+	}
+	i = 13;
+	for (j = 5; j < 10; j++)
+	{
+		arr[i][j] = '%';
+	}
+	i = 12;
+	for (j = 6; j < 9; j++)
+	{
+		arr[i][j] = '%';
+	}
+	j = 7;
+	for (i = 3; i < 9; i++)
+	{
+		arr[i][j] = '%';
+	}
+	j = 0;
+	for (i = 0; i < 3; i++)
+	{
+		arr[i][j] = '%';
+	}
+	j = 14;
+	for (i = 0; i < 3; i++)
+	{
+		arr[i][j] = '%';
+	}
+	arr[0][1] = '%';
+	arr[13][0] = '%';
+	arr[0][13] = '%';
+	arr[13][14] = '%';
+	arr[3][6] = '%';
+	arr[3][8] = '%';
+	arr[8][6] = '%';
+	arr[8][8] = '%';
+	arr[7][3] = '%';
+	arr[7][10] = '%';
+	arr[11][7] = '%';
+}
+void lvl_8(char* arr[], int n, int m)
+{
+	int i, j;
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < m; j++)
+		{
+			arr[i][j] = '.';
+		}
+	}
+	i = 0;
+	for (j = 2; j < 7; j++)
+	{
+		arr[i][j] = '%';
+	}
+	i = 14;
+	for (j = 8; j < 13; j++)
+	{
+		arr[i][j] = '%';
+	}
+	j = 3;
+	for (i = 1; i < 4; i++)
+	{
+		arr[i][j] = '%';
+	}
+	j = 11;
+	for (i = 11; i < 15; i++)
+	{
+		arr[i][j] = '%';
+	}
+	arr[1][2] = '%';
+	arr[13][12] = '%';
+	for (i = 13; i < 15; i++)
+	{
+		for (j = 0; j < 2; j++)
+		{
+			arr[i][j] = '%';
+		}
+	}
+	for (i = 0; i < 2; i++)
+	{
+		for (j = 13; j < 15; j++)
+		{
+			arr[i][j] = '%';
+		}
+	}
+	arr[12][2] = '%';
+	arr[11][3] = '%';
+	arr[10][4] = '%';
+	arr[4][10] = '%';
+	arr[3][11] = '%';
+	arr[12][2] = '%';
+	i = 7;
+	for (j = 6; j < 9; j++)
+	{
+		arr[i][j] = '%';
+	}
+	arr[6][7] = '%';
+	arr[8][7] = '%';
+}
+
 void main(void)
 {
 	puts("Game snake.\nYou control the snake, but the snake is moving itself.\nYour goal is to eat the food and grow as much as possible.\nYou win when your snake will occupy the entire field.\nControl:\nw - up;\na - right;\nd - left;\ns - down;\nIf you want pause - press 0(number).");
@@ -366,70 +617,69 @@ void main(void)
 		tail_y = tail_y + wayt_y;
 		arr[head_x][head_y] = kind_edge(way_x, way_y);
 		arr[tail_x][tail_y] = kind_edge(wayt_x, wayt_y);
-		if (length == 10 && level == 1)
+		if (length == 2 && level == 1)
 		{
-			lvl_2(arr, n, m); 
-			do
-			{
-				head_x = (0 + rand() % n) / 2;
-				head_y = (0 + rand() % m) / 2;
-			} while (arr[head_x][head_y] != '.');
-			arr[head_x][head_y] = '>';
-			tail_x = head_x;
-			tail_y = head_y;
-			do
-			{
-				coordinate_x = 0 + rand() % n;
-				coordinate_y = 0 + rand() % m;
-			} while (arr[coordinate_x][coordinate_y] != '.');
-			arr[coordinate_x][coordinate_y] = '*';
-
-			way_x = 0;
-			way_y = 1;
-			wayt_x = way_x;
-			wayt_y = way_y;
-			length = 1;
-			flag = 0;
-
-			Clear(&Edge);
-			Init(&Edge);
-			SetConsoleCursorPosition(hConsole, position);
-			write_arr(arr, n, m);
+			lvl_2(arr, n, m);
 			level = 2;
-			printf("Input something to start.\n");
-			_getch();
-		}if (length == 10 && level == 2)
+			SetConsoleCursorPosition(hConsole, position);
+			init_lvl(arr, n, m, &head_x, &head_y, &tail_x, &tail_y, &coordinate_x, &coordinate_y, &way_x, &way_y, &wayt_x, &wayt_y, &Edge, &length, &flag, &level);
+		}
+		if (length == 2 && level == 2)
 		{
 			lvl_3(arr, n, m);
-			do
-			{
-				head_x = (0 + rand() % n) / 2;
-				head_y = (0 + rand() % m) / 2;
-			} while (arr[head_x][head_y] != '.');
-			arr[head_x][head_y] = '>';
-			tail_x = head_x;
-			tail_y = head_y;
-			do
-			{
-				coordinate_x = 0 + rand() % n;
-				coordinate_y = 0 + rand() % m;
-			} while (arr[coordinate_x][coordinate_y] != '.');
-			arr[coordinate_x][coordinate_y] = '*';
-
-			way_x = 0;
-			way_y = 1;
-			wayt_x = way_x;
-			wayt_y = way_y;
-			length = 1;
-			flag = 0;
-
-			Clear(&Edge);
-			Init(&Edge);
-			SetConsoleCursorPosition(hConsole, position);
-			write_arr(arr, n, m);
 			level = 3;
-			printf("Input something to start.\n");
-			_getch();
+			SetConsoleCursorPosition(hConsole, position);
+			init_lvl(arr, n, m, &head_x, &head_y, &tail_x, &tail_y, &coordinate_x, &coordinate_y, &way_x, &way_y, &wayt_x, &wayt_y, &Edge, &length, &flag, &level);
+		}
+		if (length == 2 && level == 3)
+		{
+			lvl_4(arr, n, m);
+			level = 4;
+			SetConsoleCursorPosition(hConsole, position);
+			init_lvl(arr, n, m, &head_x, &head_y, &tail_x, &tail_y, &coordinate_x, &coordinate_y, &way_x, &way_y, &wayt_x, &wayt_y, &Edge, &length, &flag, &level);
+		}
+		if (length == 2 && level == 4)
+		{
+			lvl_5(arr, n, m);
+			level = 5;
+			SetConsoleCursorPosition(hConsole, position);
+			init_lvl(arr, n, m, &head_x, &head_y, &tail_x, &tail_y, &coordinate_x, &coordinate_y, &way_x, &way_y, &wayt_x, &wayt_y, &Edge, &length, &flag, &level);
+		}
+		if (length == 2 && level == 5)
+		{
+			lvl_6(arr, n, m);
+			level = 6;
+			SetConsoleCursorPosition(hConsole, position);
+			init_lvl(arr, n, m, &head_x, &head_y, &tail_x, &tail_y, &coordinate_x, &coordinate_y, &way_x, &way_y, &wayt_x, &wayt_y, &Edge, &length, &flag, &level);
+		}
+		if (length == 2 && level == 6)
+		{
+			lvl_7(arr, n, m);
+			level = 7;
+			SetConsoleCursorPosition(hConsole, position);
+			init_lvl(arr, n, m, &head_x, &head_y, &tail_x, &tail_y, &coordinate_x, &coordinate_y, &way_x, &way_y, &wayt_x, &wayt_y, &Edge, &length, &flag, &level);
+		}
+		if (length == 2 && level == 7)
+		{
+			lvl_8(arr, n, m);
+			level = 8;
+			SetConsoleCursorPosition(hConsole, position);
+			init_lvl(arr, n, m, &head_x, &head_y, &tail_x, &tail_y, &coordinate_x, &coordinate_y, &way_x, &way_y, &wayt_x, &wayt_y, &Edge, &length, &flag, &level);
+		}
+		if (length == 2 && level == 8)
+		{
+			i = 0;
+			j = 0;
+			for (i = 0; i < n; i++)
+			{
+				for (j = 0; j < m; j++)
+				{
+					arr[i][j] = '.';
+				}
+			}
+			level = 9;
+			SetConsoleCursorPosition(hConsole, position);
+			init_lvl(arr, n, m, &head_x, &head_y, &tail_x, &tail_y, &coordinate_x, &coordinate_y, &way_x, &way_y, &wayt_x, &wayt_y, &Edge, &length, &flag, &level);
 		}
 	}
 	//освобождение памяти
