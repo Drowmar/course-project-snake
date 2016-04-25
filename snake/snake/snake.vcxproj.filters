@@ -18,5 +18,8 @@
     <ClCompile Include="snake.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Levels.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
