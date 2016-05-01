@@ -1,10 +1,25 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <conio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <Windows.h>
 #define MAX_LONG 5
+void lvl_2(char* arr[], int n, int m);
+void lvl_3(char* arr[], int n, int m);
+void lvl_4(char* arr[], int n, int m);
+void lvl_5(char* arr[], int n, int m);
+void lvl_6(char* arr[], int n, int m);
+void lvl_7(char* arr[], int n, int m);
+void lvl_8(char* arr[], int n, int m);
 
+
+struct var
+{
+	int wayv_x;
+	int wayv_y;
+	int coord_x;
+	int coord_y;
+};
 struct List
 {
 	int wt_x;
@@ -142,10 +157,17 @@ void init_lvl(char* arr[], int n, int m, int* head_x, int* head_y, int* tail_x, 
 
 void main(void)
 {
+	struct var* num_v = NULL;
+	num_v = (struct var*)malloc(0 * sizeof(struct var));
+	if (num_v == NULL)
+	{
+		puts("Out if memory.");
+		return;
+	}
 	puts("Game snake.\nYou control the snake, but the snake is moving itself.\nYour goal is to eat the food and grow as much as possible.\nYou win when your snake will occupy the entire field.\nControl:\nw - up;\na - right;\nd - left;\ns - down;\nIf you want pause - press 0(number).");
 	struct ListEdge Edge;
 	Init(&Edge);
-	int i1, j1, level, choice, defficulty, check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y, length, stime;
+	int flag1, wx, wy, num_of_v = 0, i1, j1, level, choice, defficulty, check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y, length, stime;
 	char press;
 	long ltime;
 	ltime = time(NULL);
@@ -214,7 +236,7 @@ void main(void)
 		defficulty = 100;
 		break;
 	case 4:
-		defficulty = 80;
+		defficulty = 70;
 		break;
 	}
 	//инициализация
@@ -267,6 +289,7 @@ void main(void)
 			case (char)32:
 				if (length != 1)
 				{
+					num_of_v++;
 					length--;
 					arr[tail_x][tail_y] = '.';
 					if (Edge.start != NULL)
@@ -280,9 +303,40 @@ void main(void)
 					}
 					tail_x += wayt_x;
 					tail_y += wayt_y;
+					arr[tail_x][tail_y] = kind_edge(wayt_x, wayt_y);
 					i1 = head_x;
 					j1 = head_y;
-					while (i1 < n - 1 && j1 < m - 1 && i1 >= 0 && j1 >= 0)
+					num_v = (struct var*)realloc(num_v, num_of_v * sizeof(struct var));
+					num_v[num_of_v - 1].wayv_x = way_x;
+					num_v[num_of_v - 1].wayv_y = way_y;
+					num_v[num_of_v - 1].coord_x = head_x;
+					num_v[num_of_v - 1].coord_y = head_y;
+					i1 = num_v[num_of_v - 1].coord_x;
+					j1 = num_v[num_of_v - 1].coord_y;
+					wx = num_v[i].wayv_x;
+					wy = num_v[i].wayv_y;
+					if (i1 + wx < n && j1 + wy < m && i1 + wx >= 0 && j1 + wy >= 0)
+					{
+						if (arr[i1 + wx][j1 + wy] == '*')
+						{
+							arr[i1 + wx][j1 + wy] = '.';
+							num_v[i].coord_x = -1;
+							num_v[i].coord_y = -1;
+							num_v[i].wayv_x = 0;
+							num_v[i].wayv_y = 0;
+							do
+							{
+								coordinate_x = 0 + rand() % n;
+								coordinate_y = 0 + rand() % m;
+							} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
+							arr[coordinate_x][coordinate_y] = '*';
+							continue;
+						}
+						arr[i1 + wx][j1 + wy] = 'o';
+						num_v[num_of_v - 1].coord_x += wx;
+						num_v[num_of_v - 1].coord_y += wy;
+					}
+					/*while (i1 < n - 1 && j1 < m - 1 && i1 >= 0 && j1 >= 0)
 					{
 						if (arr[i1][j1] == '%')
 						{
@@ -290,13 +344,109 @@ void main(void)
 							break;
 						}
 						i1 = i1 + way_x, j1 = j1 + way_y;
-					}
+					}*/
+
 				}
 			}
 			//когда много клавиш нажато
 			while (_kbhit() != 0)
 				((char)_getch() != '\n');
 			Add(&Edge, way_x, way_y, head_x, head_y);
+		}
+		for (i = 0; i < num_of_v; i++)
+		{
+			if (num_v[i].coord_x != -1 && num_v[i].coord_y != -1)
+			{
+				flag1 = 0;
+				i1 = num_v[i].coord_x;
+				j1 = num_v[i].coord_y;
+				wx = num_v[i].wayv_x;
+				wy = num_v[i].wayv_y;
+				arr[i1][j1] = '.';
+				if (i1 + wx < n && j1 + wy < m && i1 + wx >= 0 && j1 + wy >= 0)
+				{
+					if (arr[i1 + wx][j1 + wy] == '%')
+					{
+						arr[i1 + wx][j1 + wy] = '.';
+						num_v[i].coord_x = -1;
+						num_v[i].coord_y = -1;
+						num_v[i].wayv_x = 0;
+						num_v[i].wayv_y = 0;
+						continue;
+					}
+					if (arr[i1 + wx][j1 + wy] == '*')
+					{
+						arr[i1 + wx][j1 + wy] = '.';
+						num_v[i].coord_x = -1;
+						num_v[i].coord_y = -1;
+						num_v[i].wayv_x = 0;
+						num_v[i].wayv_y = 0;
+						do
+						{
+							coordinate_x = 0 + rand() % n;
+							coordinate_y = 0 + rand() % m;
+						} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
+						arr[coordinate_x][coordinate_y] = '*';
+						continue;
+					}
+					if (arr[i1 + wx][j1 + wy] != '.')
+					{
+						num_v[i].coord_x = -1;
+						num_v[i].coord_y = -1;
+						num_v[i].wayv_x = 0;
+						num_v[i].wayv_y = 0;
+						continue;
+					}
+				}
+				if ((i1 + (wx * 2)) < n && (j1 + (wy * 2)) < m && (i1 + (wx * 2)) >= 0 && (j1 + (wy * 2)) >= 0)
+				{
+					if (arr[i1 + wx * 2][j1 + wy * 2] == '*')
+					{
+						arr[i1 + wx * 2][j1 + wy * 2] = '.';
+						num_v[i].coord_x = -1;
+						num_v[i].coord_y = -1;
+						num_v[i].wayv_x = 0;
+						num_v[i].wayv_y = 0;
+						do
+						{
+							coordinate_x = 0 + rand() % n;
+							coordinate_y = 0 + rand() % m;
+						} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
+						arr[coordinate_x][coordinate_y] = '*';
+						continue;
+					}
+					if (arr[i1 + wx * 2][j1 + wy * 2] == '%')
+					{
+						arr[i1 + wx * 2][j1 + wy * 2] = '.';
+						num_v[i].coord_x = -1;
+						num_v[i].coord_y = -1;
+						num_v[i].wayv_x = 0;
+						num_v[i].wayv_y = 0;
+						continue;
+					}
+					if (arr[i1 + wx * 2][j1 + wy * 2] != '.')
+					{
+						num_v[i].coord_x = -1;
+						num_v[i].coord_y = -1;
+						num_v[i].wayv_x = 0;
+						num_v[i].wayv_y = 0;
+						continue;
+					}
+					if (arr[i1 + wx * 2][j1 + wy * 2] == '.')
+					{
+						num_v[i].coord_x += wx * 2;
+						num_v[i].coord_y += wy * 2;
+						i1 = num_v[i].coord_x;
+						j1 = num_v[i].coord_y;
+						arr[i1][j1] = 'o';
+						continue;
+					}
+				}
+				num_v[i].coord_x = -1;
+				num_v[i].coord_y = -1;
+				num_v[i].wayv_x = 0;
+				num_v[i].wayv_y = 0;
+			}
 		}
 		arr[tail_x][tail_y] = '.';
 		//встреча с едой
@@ -316,7 +466,7 @@ void main(void)
 			{
 				coordinate_x = 0 + rand() % n;
 				coordinate_y = 0 + rand() % m;
-			} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
+			} while (arr[coordinate_x][coordinate_y] != '.');
 			arr[coordinate_x][coordinate_y] = '*';
 			tail_x -= wayt_x;
 			tail_y -= wayt_y;
@@ -406,6 +556,7 @@ void main(void)
 		free(arr[i]);
 	}
 	free(arr);
+	free(num_v);
 	Clear(&Edge);
 	system("cls");
 	if (flag != 1)

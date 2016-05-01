@@ -1,21 +1,14 @@
 ﻿  snake.c
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(151): warning C4013: 'time' undefined; assuming extern returning int
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(189): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(173): warning C4013: 'time' undefined; assuming extern returning int
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(211): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           d:\programs\visual studio 2013\vc\include\stdio.h(283) : see declaration of 'scanf'
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(229): warning C4020: 'init_lvl' : too many actual parameters
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(340): warning C4013: 'lvl_2' undefined; assuming extern returning int
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(343): warning C4020: 'init_lvl' : too many actual parameters
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(347): warning C4013: 'lvl_3' undefined; assuming extern returning int
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(350): warning C4020: 'init_lvl' : too many actual parameters
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(354): warning C4013: 'lvl_4' undefined; assuming extern returning int
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(357): warning C4020: 'init_lvl' : too many actual parameters
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(361): warning C4013: 'lvl_5' undefined; assuming extern returning int
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(364): warning C4020: 'init_lvl' : too many actual parameters
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(368): warning C4013: 'lvl_6' undefined; assuming extern returning int
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(371): warning C4020: 'init_lvl' : too many actual parameters
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(375): warning C4013: 'lvl_7' undefined; assuming extern returning int
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(378): warning C4020: 'init_lvl' : too many actual parameters
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(382): warning C4013: 'lvl_8' undefined; assuming extern returning int
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(385): warning C4020: 'init_lvl' : too many actual parameters
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(400): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(251): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(493): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(500): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(507): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(514): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(521): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(528): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(535): warning C4020: 'init_lvl' : too many actual parameters
+d:\labs\курсовой\course-project-snake\snake\snake\snake.c(550): warning C4020: 'init_lvl' : too many actual parameters
   snake.vcxproj -> D:\Labs\курсовой\course-project-snake\snake\Debug\snake.exe
