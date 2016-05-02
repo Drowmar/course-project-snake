@@ -3,7 +3,7 @@
 #include <conio.h>
 #include <string.h>
 #include <Windows.h>
-#define MAX_LONG 5
+#define MAX_LONG 10
 void lvl_2(char* arr[], int n, int m);
 void lvl_3(char* arr[], int n, int m);
 void lvl_4(char* arr[], int n, int m);
@@ -41,9 +41,13 @@ void Init(struct ListEdge * lstp)
 	lstp->end = NULL;
 }
 
-void Add(struct ListEdge* lstp, int x, int y, int a_x, int a_y)
+int Add(struct ListEdge* lstp, int x, int y, int a_x, int a_y)
 {
 	struct List* temp = (struct List*)malloc(sizeof(struct List));
+	if (temp == NULL)
+	{
+		return 1;
+	}
 
 	temp->next = NULL;
 	temp->wt_x = x;
@@ -61,6 +65,7 @@ void Add(struct ListEdge* lstp, int x, int y, int a_x, int a_y)
 	}
 
 	lstp->end = temp;
+	return 0;
 }
 
 void DeleteEdge(struct ListEdge* lstp)
@@ -167,7 +172,7 @@ void main(void)
 	puts("Game snake.\nYou control the snake, but the snake is moving itself.\nYour goal is to eat the food and grow as much as possible.\nYou win when your snake will occupy the entire field.\nControl:\nw - up;\na - right;\nd - left;\ns - down;\nIf you want pause - press 0(number).");
 	struct ListEdge Edge;
 	Init(&Edge);
-	int flag1, wx, wy, num_of_v = 0, i1, j1, level, choice, defficulty, check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y, length, stime;
+	int kind = 0, wx, wy, num_of_v = 0, i1, j1, level, choice, defficulty, check, n, m, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y, length, stime;
 	char press;
 	long ltime;
 	ltime = time(NULL);
@@ -239,6 +244,27 @@ void main(void)
 		defficulty = 70;
 		break;
 	}
+	printf("Input kind of game.\n1 - classic.\n2 - modern.\n");
+	do
+	{
+		check = scanf("%d", &kind);
+		if (check == 1 && kind != 1 && kind != 2)
+		{
+			flag = 1;
+			printf("Incorrect input!\n");
+			fflush(stdin);
+			continue;
+		}
+		flag = 0;
+		if (getchar() != '\n')
+		{
+			flag = 1;
+			fflush(stdin);
+		}
+		if (flag == 1 || check != 1)
+			printf("Incorrect input!\n");
+	} while (check != 1 || flag == 1);
+	 
 	//инициализация
 	for (i = 0; i < n; i++)
 	{
@@ -287,7 +313,7 @@ void main(void)
 				system("cls");
 				break;
 			case (char)32:
-				if (length != 1)
+				if (length != 1 && kind == 2)
 				{
 					num_of_v++;
 					length--;
@@ -336,116 +362,117 @@ void main(void)
 						num_v[num_of_v - 1].coord_x += wx;
 						num_v[num_of_v - 1].coord_y += wy;
 					}
-					/*while (i1 < n - 1 && j1 < m - 1 && i1 >= 0 && j1 >= 0)
-					{
-						if (arr[i1][j1] == '%')
-						{
-							arr[i1][j1] = '.';
-							break;
-						}
-						i1 = i1 + way_x, j1 = j1 + way_y;
-					}*/
-
 				}
 			}
 			//когда много клавиш нажато
 			while (_kbhit() != 0)
 				((char)_getch() != '\n');
-			Add(&Edge, way_x, way_y, head_x, head_y);
-		}
-		for (i = 0; i < num_of_v; i++)
-		{
-			if (num_v[i].coord_x != -1 && num_v[i].coord_y != -1)
+			if (Add(&Edge, way_x, way_y, head_x, head_y) == 1)
 			{
-				flag1 = 0;
-				i1 = num_v[i].coord_x;
-				j1 = num_v[i].coord_y;
-				wx = num_v[i].wayv_x;
-				wy = num_v[i].wayv_y;
-				arr[i1][j1] = '.';
-				if (i1 + wx < n && j1 + wy < m && i1 + wx >= 0 && j1 + wy >= 0)
+				Clear(&Edge); 
+				for (i = 0; i < n; i++)
 				{
-					if (arr[i1 + wx][j1 + wy] == '%')
-					{
-						arr[i1 + wx][j1 + wy] = '.';
-						num_v[i].coord_x = -1;
-						num_v[i].coord_y = -1;
-						num_v[i].wayv_x = 0;
-						num_v[i].wayv_y = 0;
-						continue;
-					}
-					if (arr[i1 + wx][j1 + wy] == '*')
-					{
-						arr[i1 + wx][j1 + wy] = '.';
-						num_v[i].coord_x = -1;
-						num_v[i].coord_y = -1;
-						num_v[i].wayv_x = 0;
-						num_v[i].wayv_y = 0;
-						do
-						{
-							coordinate_x = 0 + rand() % n;
-							coordinate_y = 0 + rand() % m;
-						} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
-						arr[coordinate_x][coordinate_y] = '*';
-						continue;
-					}
-					if (arr[i1 + wx][j1 + wy] != '.')
-					{
-						num_v[i].coord_x = -1;
-						num_v[i].coord_y = -1;
-						num_v[i].wayv_x = 0;
-						num_v[i].wayv_y = 0;
-						continue;
-					}
+					free(arr[i]);
 				}
-				if ((i1 + (wx * 2)) < n && (j1 + (wy * 2)) < m && (i1 + (wx * 2)) >= 0 && (j1 + (wy * 2)) >= 0)
+				free(arr);
+				free(num_v);
+			}
+		}
+		if (kind == 2)
+		{
+			for (i = 0; i < num_of_v; i++)
+			{
+				if (num_v[i].coord_x != -1 && num_v[i].coord_y != -1)
 				{
-					if (arr[i1 + wx * 2][j1 + wy * 2] == '*')
+					i1 = num_v[i].coord_x;
+					j1 = num_v[i].coord_y;
+					wx = num_v[i].wayv_x;
+					wy = num_v[i].wayv_y;
+					arr[i1][j1] = '.';
+					if (i1 + wx < n && j1 + wy < m && i1 + wx >= 0 && j1 + wy >= 0)
 					{
-						arr[i1 + wx * 2][j1 + wy * 2] = '.';
-						num_v[i].coord_x = -1;
-						num_v[i].coord_y = -1;
-						num_v[i].wayv_x = 0;
-						num_v[i].wayv_y = 0;
-						do
+						if (arr[i1 + wx][j1 + wy] == '%')
 						{
-							coordinate_x = 0 + rand() % n;
-							coordinate_y = 0 + rand() % m;
-						} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
-						arr[coordinate_x][coordinate_y] = '*';
-						continue;
+							arr[i1 + wx][j1 + wy] = '.';
+							num_v[i].coord_x = -1;
+							num_v[i].coord_y = -1;
+							num_v[i].wayv_x = 0;
+							num_v[i].wayv_y = 0;
+							continue;
+						}
+						if (arr[i1 + wx][j1 + wy] == '*')
+						{
+							arr[i1 + wx][j1 + wy] = '.';
+							num_v[i].coord_x = -1;
+							num_v[i].coord_y = -1;
+							num_v[i].wayv_x = 0;
+							num_v[i].wayv_y = 0;
+							do
+							{
+								coordinate_x = 0 + rand() % n;
+								coordinate_y = 0 + rand() % m;
+							} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
+							arr[coordinate_x][coordinate_y] = '*';
+							continue;
+						}
+						if (arr[i1 + wx][j1 + wy] != '.')
+						{
+							num_v[i].coord_x = -1;
+							num_v[i].coord_y = -1;
+							num_v[i].wayv_x = 0;
+							num_v[i].wayv_y = 0;
+							continue;
+						}
 					}
-					if (arr[i1 + wx * 2][j1 + wy * 2] == '%')
+					if ((i1 + (wx * 2)) < n && (j1 + (wy * 2)) < m && (i1 + (wx * 2)) >= 0 && (j1 + (wy * 2)) >= 0)
 					{
-						arr[i1 + wx * 2][j1 + wy * 2] = '.';
-						num_v[i].coord_x = -1;
-						num_v[i].coord_y = -1;
-						num_v[i].wayv_x = 0;
-						num_v[i].wayv_y = 0;
-						continue;
+						if (arr[i1 + wx * 2][j1 + wy * 2] == '*')
+						{
+							arr[i1 + wx * 2][j1 + wy * 2] = '.';
+							num_v[i].coord_x = -1;
+							num_v[i].coord_y = -1;
+							num_v[i].wayv_x = 0;
+							num_v[i].wayv_y = 0;
+							do
+							{
+								coordinate_x = 0 + rand() % n;
+								coordinate_y = 0 + rand() % m;
+							} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
+							arr[coordinate_x][coordinate_y] = '*';
+							continue;
+						}
+						if (arr[i1 + wx * 2][j1 + wy * 2] == '%')
+						{
+							arr[i1 + wx * 2][j1 + wy * 2] = '.';
+							num_v[i].coord_x = -1;
+							num_v[i].coord_y = -1;
+							num_v[i].wayv_x = 0;
+							num_v[i].wayv_y = 0;
+							continue;
+						}
+						if (arr[i1 + wx * 2][j1 + wy * 2] != '.')
+						{
+							num_v[i].coord_x = -1;
+							num_v[i].coord_y = -1;
+							num_v[i].wayv_x = 0;
+							num_v[i].wayv_y = 0;
+							continue;
+						}
+						if (arr[i1 + wx * 2][j1 + wy * 2] == '.')
+						{
+							num_v[i].coord_x += wx * 2;
+							num_v[i].coord_y += wy * 2;
+							i1 = num_v[i].coord_x;
+							j1 = num_v[i].coord_y;
+							arr[i1][j1] = 'o';
+							continue;
+						}
 					}
-					if (arr[i1 + wx * 2][j1 + wy * 2] != '.')
-					{
-						num_v[i].coord_x = -1;
-						num_v[i].coord_y = -1;
-						num_v[i].wayv_x = 0;
-						num_v[i].wayv_y = 0;
-						continue;
-					}
-					if (arr[i1 + wx * 2][j1 + wy * 2] == '.')
-					{
-						num_v[i].coord_x += wx * 2;
-						num_v[i].coord_y += wy * 2;
-						i1 = num_v[i].coord_x;
-						j1 = num_v[i].coord_y;
-						arr[i1][j1] = 'o';
-						continue;
-					}
+					num_v[i].coord_x = -1;
+					num_v[i].coord_y = -1;
+					num_v[i].wayv_x = 0;
+					num_v[i].wayv_y = 0;
 				}
-				num_v[i].coord_x = -1;
-				num_v[i].coord_y = -1;
-				num_v[i].wayv_x = 0;
-				num_v[i].wayv_y = 0;
 			}
 		}
 		arr[tail_x][tail_y] = '.';
