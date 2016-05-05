@@ -1,16 +1,4 @@
-﻿  Levels.c
-d:\labs\курсовой\course-project-snake\snake\snake\levels.c(7): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          d:\programs\visual studio 2013\vc\include\stdio.h(211) : see declaration of 'fopen'
-d:\labs\курсовой\course-project-snake\snake\snake\levels.c(29): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          d:\programs\visual studio 2013\vc\include\stdio.h(211) : see declaration of 'fopen'
-d:\labs\курсовой\course-project-snake\snake\snake\levels.c(51): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          d:\programs\visual studio 2013\vc\include\stdio.h(211) : see declaration of 'fopen'
-d:\labs\курсовой\course-project-snake\snake\snake\levels.c(73): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          d:\programs\visual studio 2013\vc\include\stdio.h(211) : see declaration of 'fopen'
-d:\labs\курсовой\course-project-snake\snake\snake\levels.c(95): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          d:\programs\visual studio 2013\vc\include\stdio.h(211) : see declaration of 'fopen'
-d:\labs\курсовой\course-project-snake\snake\snake\levels.c(117): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          d:\programs\visual studio 2013\vc\include\stdio.h(211) : see declaration of 'fopen'
-d:\labs\курсовой\course-project-snake\snake\snake\levels.c(139): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-          d:\programs\visual studio 2013\vc\include\stdio.h(211) : see declaration of 'fopen'
+﻿  stack.c
+  snake.c
+  Generating Code...
   snake.vcxproj -> D:\Labs\курсовой\course-project-snake\snake\Debug\snake.exe
