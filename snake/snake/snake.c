@@ -35,7 +35,7 @@ char kind_edge(int x, int y)
 }
 
 //deallocation
-void Free (char *arr[], struct var *num_v, struct ListEdge *edge)
+void Free (char *arr[], struct war* num_v, struct ListEdge *edge)
 {
 	int i = 0;
 	for (i = 0; i < SIZE; i++)
@@ -78,7 +78,7 @@ void main(void)
 		//memory allocation
 		main_flag = 0;
 		num_of_v = 0;
-		num_v = (struct var*)malloc(0 * sizeof(struct war));
+		num_v = (struct war*)malloc(0 * sizeof(struct war));
 		if (num_v == NULL)
 		{
 			puts("Out if memory.");
@@ -107,7 +107,7 @@ void main(void)
 				return;
 			}
 		}
-
+		
 		//range of complexity
 		printf("Input difficulty:\n1 - easy;\n2 - medium;\n3 - hard.\n4 - expert.\n");
 		do
@@ -216,7 +216,7 @@ void main(void)
 						j1 = head_y;
 
 						//the creation of the shot and all the checks for him
-						num_v = (struct var*)realloc(num_v, num_of_v * sizeof(struct war));
+						num_v = (struct war*)realloc(num_v, num_of_v * sizeof(struct war));
 						if (num_v == NULL)
 						{
 							Free(arr, num_v, &Edge);

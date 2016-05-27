@@ -1,6 +1,2 @@
 ﻿  snake.c
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(81): warning C4133: '=' : incompatible types - from 'var *' to 'war *'
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(219): warning C4133: '=' : incompatible types - from 'var *' to 'war *'
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(222): warning C4133: 'function' : incompatible types - from 'war *' to 'var *'
-d:\labs\курсовой\course-project-snake\snake\snake\snake.c(410): warning C4133: 'function' : incompatible types - from 'war *' to 'var *'
   snake.vcxproj -> D:\Labs\курсовой\course-project-snake\snake\Debug\snake.exe
