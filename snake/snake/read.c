@@ -1,4 +1,6 @@
 #include <stdio.h>
+
+//data input
 int read()
 {
 	int check, flag, num;

@@ -44,9 +44,6 @@
     <ClInclude Include="read.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="write.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="writeArr.h">
       <Filter>Header Files</Filter>
     </ClInclude>

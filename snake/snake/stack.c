@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "stack.h"
+
+//stack initialization
 void Init(struct ListEdge * lstp)
 {
 	lstp->start = NULL;
@@ -9,6 +11,7 @@ void Init(struct ListEdge * lstp)
 	return;
 }
 
+//adding to the list
 int Add(struct ListEdge* lstp, int x, int y, int a_x, int a_y)
 {
 	struct List* temp = (struct List*)malloc(sizeof(struct List));
@@ -36,6 +39,7 @@ int Add(struct ListEdge* lstp, int x, int y, int a_x, int a_y)
 	return 0;
 }
 
+//delete a list item
 void DeleteEdge(struct ListEdge* lstp)
 {
 	struct List* del = lstp->start;
@@ -46,6 +50,7 @@ void DeleteEdge(struct ListEdge* lstp)
 	return;
 }
 
+//list cleaning
 void Clear(struct ListEdge* list)
 {
 	struct List* del = list->start;

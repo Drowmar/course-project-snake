@@ -1,4 +1,6 @@
 #define SIZE 15
+
+//the output of the array on the screen
 void write_arr(char* arr[])
 {
 	int i, j;

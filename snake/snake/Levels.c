@@ -5,6 +5,7 @@
 #include <conio.h>
 #define SIZE 15
 
+//level initialization
 void init_lvl(char* arr[], int* head_x, int* head_y, int* tail_x, int* tail_y, int* coordinate_x, int* coordinate_y, int* way_x, int* way_y, int* wayt_x, int* wayt_y, struct ListEdge* Edge, int* length, int* flag)
 {
 	*head_x = 6;
@@ -35,6 +36,7 @@ void init_lvl(char* arr[], int* head_x, int* head_y, int* tail_x, int* tail_y, i
 	return;
 }
 
+//creating fields for a certain level
 int lvl_2(char* arr[])
 {
 	int i, j;

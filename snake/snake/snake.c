@@ -10,6 +10,8 @@
 #include "checkLevel.h"
 #include <time.h>
 #define SIZE 15
+
+//structure for bullets
 struct war
 {
 	int wayv_x;
@@ -18,6 +20,7 @@ struct war
 	int coord_y;
 };
 
+//snake drawing selection
 char kind_edge(int x, int y)
 {
 	if (x == -1 && y == 0)
@@ -31,6 +34,7 @@ char kind_edge(int x, int y)
 	return 'o';
 }
 
+//deallocation
 void Free (char *arr[], struct var *num_v, struct ListEdge *edge)
 {
 	int i = 0;
@@ -44,6 +48,7 @@ void Free (char *arr[], struct var *num_v, struct ListEdge *edge)
 	return;
 }
 
+//disappearance of the bullet
 void un_init(struct war* num_v, int i)
 {
 	num_v[i].coord_x = -1;
@@ -70,6 +75,7 @@ void main(void)
 	position.Y = 0;
 	do
 	{
+		//memory allocation
 		main_flag = 0;
 		num_of_v = 0;
 		num_v = (struct var*)malloc(0 * sizeof(struct war));
@@ -79,7 +85,6 @@ void main(void)
 			return;
 		}
 
-		//выделение памяти
 		arr = (char**)malloc(SIZE * sizeof(char*));
 		if (arr == NULL)
 		{
@@ -102,6 +107,8 @@ void main(void)
 				return;
 			}
 		}
+
+		//range of complexity
 		printf("Input difficulty:\n1 - easy;\n2 - medium;\n3 - hard.\n4 - expert.\n");
 		do
 		{
@@ -123,6 +130,8 @@ void main(void)
 			defficulty = 70;
 			break;
 		}
+
+		//choose the type of game
 		printf("Input kind of game.\n1 - classic.\n2 - modern.\n");
 		do
 		{
@@ -130,7 +139,8 @@ void main(void)
 		} while (kind != 1 && kind != 2 && kind != 0);
 		if (kind == 0)
 			break;
-		//инициализация
+
+		//initialize the game field
 		for (i = 0; i < SIZE; i++)
 		{
 			for (j = 0; j < SIZE; j++)
@@ -138,19 +148,22 @@ void main(void)
 				arr[i][j] = '.';
 			}
 		}
-		system("cls");
+
+		system("cls"); //clear the console
 		init_lvl(arr, &head_x, &head_y, &tail_x, &tail_y, &coordinate_x, &coordinate_y, &way_x, &way_y, &wayt_x, &wayt_y, &Edge, &length, &flag);
 		level = 1;
 
 		while (head_x < SIZE && head_y < SIZE && head_x >= 0 && head_y >= 0)
 		{
-			//вывод    
+			//redraw the console   
 			SetConsoleCursorPosition(hConsole, position);
 			write_arr(arr);
 			printf("Score: %d.", score);
 
-			//поворот
-			Sleep(defficulty);
+			//stop movement
+			Sleep(defficulty); 
+
+			//handle keypress
 			if (_kbhit() != 0)
 			{
 				press = (char)_getch();
@@ -177,12 +190,16 @@ void main(void)
 					press = (char)_getch();
 					system("cls");
 					break;
+
+				//shot treatment
 				case (char)32:
 					if (length != 1 && kind == 2)
 					{
 						num_of_v++;
 						length--;
 						arr[tail_x][tail_y] = '.';
+
+						//the movement of the tail, depending on the presence of the snake turn
 						if (Edge.start != NULL)
 						{
 							if ((tail_x == Edge.start->addr_x) && (tail_y == Edge.start->addr_y))
@@ -197,6 +214,8 @@ void main(void)
 						arr[tail_x][tail_y] = kind_edge(wayt_x, wayt_y);
 						i1 = head_x;
 						j1 = head_y;
+
+						//the creation of the shot and all the checks for him
 						num_v = (struct var*)realloc(num_v, num_of_v * sizeof(struct war));
 						if (num_v == NULL)
 						{
@@ -232,7 +251,8 @@ void main(void)
 				}
 				if (press == '0')
 					break;
-				//когда много клавиш нажато
+
+				//if you press a lot of buttons
 				while (_kbhit() != 0)
 					((char)_getch() != '\n');
 				if (Add(&Edge, way_x, way_y, head_x, head_y) == 1)
@@ -246,6 +266,8 @@ void main(void)
 					free(num_v);
 				}
 			}
+
+			//processing all the existing shots
 			if (kind == 2)
 			{
 				for (i = 0; i < num_of_v; i++)
@@ -259,12 +281,15 @@ void main(void)
 						arr[i1][j1] = '.';
 						if (i1 + wx < SIZE && j1 + wy < SIZE && i1 + wx >= 0 && j1 + wy >= 0)
 						{
+							//hit the wall
 							if (arr[i1 + wx][j1 + wy] == '%')
 							{
 								arr[i1 + wx][j1 + wy] = '.';
 								un_init(num_v, i);
 								continue;
 							}
+
+							//hit the food
 							if (arr[i1 + wx][j1 + wy] == '*')
 							{
 								arr[i1 + wx][j1 + wy] = '.';
@@ -277,6 +302,8 @@ void main(void)
 								arr[coordinate_x][coordinate_y] = '*';
 								continue;
 							}
+
+							//hit the snake
 							if (arr[i1 + wx][j1 + wy] != '.')
 							{
 								un_init(num_v, i);
@@ -285,6 +312,7 @@ void main(void)
 						}
 						if ((i1 + (wx * 2)) < SIZE && (j1 + (wy * 2)) < SIZE && (i1 + (wx * 2)) >= 0 && (j1 + (wy * 2)) >= 0)
 						{
+							//hit the food
 							if (arr[i1 + wx * 2][j1 + wy * 2] == '*')
 							{
 								arr[i1 + wx * 2][j1 + wy * 2] = '.';
@@ -297,17 +325,23 @@ void main(void)
 								arr[coordinate_x][coordinate_y] = '*';
 								continue;
 							}
+
+							//hit the wall
 							if (arr[i1 + wx * 2][j1 + wy * 2] == '%')
 							{
 								arr[i1 + wx * 2][j1 + wy * 2] = '.';
 								un_init(num_v, i);
 								continue;
 							}
+
+							//hit the snake
 							if (arr[i1 + wx * 2][j1 + wy * 2] != '.')
 							{
 								un_init(num_v, i);
 								continue;
 							}
+
+							//moving bullet
 							if (arr[i1 + wx * 2][j1 + wy * 2] == '.')
 							{
 								num_v[i].coord_x += wx * 2;
@@ -322,12 +356,15 @@ void main(void)
 					}
 				}
 			}
+
+			//snake movement
 			arr[tail_x][tail_y] = '.';
-			//встреча с едой
 			head_x += way_x;
 			head_y += way_y;
 			if ((head_x >= SIZE || head_y >= SIZE || head_x < 0 || head_y < 0) || (arr[head_x][head_y] != '.' && arr[head_x][head_y] != '*'))
 				break;
+
+			//snake eating
 			if (arr[head_x][head_y] == '*')
 			{
 				if (length + 1 == SIZE * SIZE)
@@ -341,13 +378,15 @@ void main(void)
 				{
 					coordinate_x = 0 + rand() % SIZE;
 					coordinate_y = 0 + rand() % SIZE;
-				} while (arr[coordinate_x][coordinate_y] != '.');
+				} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
 				arr[coordinate_x][coordinate_y] = '*';
 				tail_x -= wayt_x;
 				tail_y -= wayt_y;
 				length++;
 				score++;
 			}
+
+			//the movement of the tail, depending on the presence of the snake turn
 			if (Edge.start != NULL)
 			{
 				if ((tail_x == Edge.start->addr_x) && (tail_y == Edge.start->addr_y))
@@ -367,7 +406,7 @@ void main(void)
 				break;
 			}
 		}
-		//освобождение памяти
+
 		Free(arr, num_v, &Edge);
 		system("cls");
 		if (flag_level == 1)
