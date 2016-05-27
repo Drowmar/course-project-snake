@@ -24,12 +24,33 @@
     <ClCompile Include="stack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="read.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="writeArr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="checkLevel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="levels.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="read.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="write.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="writeArr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="checkLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

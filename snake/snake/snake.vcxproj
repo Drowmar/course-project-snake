@@ -76,15 +76,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="checkLevel.c" />
     <ClCompile Include="Levels.c" />
+    <ClCompile Include="read.c" />
     <ClCompile Include="snake.c">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
     </ClCompile>
     <ClCompile Include="stack.c" />
+    <ClCompile Include="writeArr.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="checkLevel.h" />
     <ClInclude Include="levels.h" />
+    <ClInclude Include="read.h" />
     <ClInclude Include="stack.h" />
+    <ClInclude Include="write.h" />
+    <ClInclude Include="writeArr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
