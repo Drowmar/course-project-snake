@@ -1,11 +1,12 @@
-#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
 #include "Windows.h"
 #include "levels.h"
-#define MAX_LONG 10
+#define MAX_LONG 1
 #define SIZE 15
 
 //check the length of the snake to initialize level
-int checkLevel(COORD position, HANDLE hConsole, int *level, char* arr[], int* head_x, int* head_y, int* tail_x, int* tail_y, int* coordinate_x, int* coordinate_y, int* way_x, int* way_y, int* wayt_x, int* wayt_y, struct ListEdge* Edge, int* length, int* flag)
+int check_level(COORD position, HANDLE hConsole, int *level, char* arr[], struct snake* snk, int* coordinate_x, int* coordinate_y, struct list_edge* Edge, int* length, int* flag)
 {
 	extern int score;
 	int i, j, flag_level = 0;
@@ -23,7 +24,7 @@ int checkLevel(COORD position, HANDLE hConsole, int *level, char* arr[], int* he
 			*level = 2;
 
 			SetConsoleCursorPosition(hConsole, position);
-			init_lvl(arr, head_x, head_y, tail_x, tail_y, coordinate_x, coordinate_y, way_x, way_y, wayt_x, wayt_y, Edge, length, flag);
+			init_lvl(arr, snk, coordinate_x, coordinate_y, Edge, length, flag);
 			score++;
 			break;
 		case 2:
@@ -34,7 +35,7 @@ int checkLevel(COORD position, HANDLE hConsole, int *level, char* arr[], int* he
 			}
 			*level = 3;
 			SetConsoleCursorPosition(hConsole, position);
-			init_lvl(arr, head_x, head_y, tail_x, tail_y, coordinate_x, coordinate_y, way_x, way_y, wayt_x, wayt_y, Edge, length, flag);
+			init_lvl(arr, snk, coordinate_x, coordinate_y, Edge, length, flag);
 			score++;
 			break;
 		case 3:
@@ -45,7 +46,7 @@ int checkLevel(COORD position, HANDLE hConsole, int *level, char* arr[], int* he
 			}
 			*level = 4;
 			SetConsoleCursorPosition(hConsole, position);
-			init_lvl(arr, head_x, head_y, tail_x, tail_y, coordinate_x, coordinate_y, way_x, way_y, wayt_x, wayt_y, Edge, length, flag);
+			init_lvl(arr, snk, coordinate_x, coordinate_y, Edge, length, flag);
 			score++;
 			break;
 		case 4:
@@ -56,7 +57,7 @@ int checkLevel(COORD position, HANDLE hConsole, int *level, char* arr[], int* he
 			}
 			*level = 5;
 			SetConsoleCursorPosition(hConsole, position);
-			init_lvl(arr, head_x, head_y, tail_x, tail_y, coordinate_x, coordinate_y, way_x, way_y, wayt_x, wayt_y, Edge, length, flag);
+			init_lvl(arr, snk, coordinate_x, coordinate_y, Edge, length, flag);
 			score++;
 			break;
 		case 5:
@@ -67,7 +68,7 @@ int checkLevel(COORD position, HANDLE hConsole, int *level, char* arr[], int* he
 			}
 			*level = 6;
 			SetConsoleCursorPosition(hConsole, position);
-			init_lvl(arr, head_x, head_y, tail_x, tail_y, coordinate_x, coordinate_y, way_x, way_y, wayt_x, wayt_y, Edge, length, flag);
+			init_lvl(arr, snk, coordinate_x, coordinate_y, Edge, length, flag);
 			score++;
 			break;
 		case 6:
@@ -78,7 +79,7 @@ int checkLevel(COORD position, HANDLE hConsole, int *level, char* arr[], int* he
 			}
 			*level = 7;
 			SetConsoleCursorPosition(hConsole, position);
-			init_lvl(arr, head_x, head_y, tail_x, tail_y, coordinate_x, coordinate_y, way_x, way_y, wayt_x, wayt_y, Edge, length, flag);
+			init_lvl(arr, snk, coordinate_x, coordinate_y, Edge, length, flag);
 			score++;
 			break;
 		case 7:
@@ -89,7 +90,7 @@ int checkLevel(COORD position, HANDLE hConsole, int *level, char* arr[], int* he
 			}
 			*level = 8;
 			SetConsoleCursorPosition(hConsole, position);
-			init_lvl(arr, head_x, head_y, tail_x, tail_y, coordinate_x, coordinate_y, way_x, way_y, wayt_x, wayt_y, Edge, length, flag);
+			init_lvl(arr, snk, coordinate_x, coordinate_y, Edge, length, flag);
 			score++;
 			break;
 		case 8:
@@ -103,8 +104,16 @@ int checkLevel(COORD position, HANDLE hConsole, int *level, char* arr[], int* he
 				}
 			}
 			*level = 9;
+			*flag = 1;
+			system("cls");
+			puts("YOU WIN!!!\nInput ENTER to continue.");
+			char temp;
+			do 
+			{
+				temp = _getch();
+			}while((int)temp != 13);
 			SetConsoleCursorPosition(hConsole, position);
-			init_lvl(arr, head_x, head_y, tail_x, tail_y, coordinate_x, coordinate_y, way_x, way_y, wayt_x, wayt_y, Edge, length, flag);
+			init_lvl(arr, snk, coordinate_x, coordinate_y, Edge, length, flag);
 			score++;
 			break;
 		}

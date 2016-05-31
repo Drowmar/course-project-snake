@@ -4,7 +4,7 @@
 #include "stack.h"
 
 //stack initialization
-void Init(struct ListEdge * lstp)
+void Init(struct list_edge * lstp)
 {
 	lstp->start = NULL;
 	lstp->end = NULL;
@@ -12,9 +12,9 @@ void Init(struct ListEdge * lstp)
 }
 
 //adding to the list
-int Add(struct ListEdge* lstp, int x, int y, int a_x, int a_y)
+int Add(struct list_edge* lstp, int x, int y, int a_x, int a_y)
 {
-	struct List* temp = (struct List*)malloc(sizeof(struct List));
+	struct list* temp = (struct list*)malloc(sizeof(struct list));
 	if (temp == NULL)
 	{
 		return 1;
@@ -40,9 +40,9 @@ int Add(struct ListEdge* lstp, int x, int y, int a_x, int a_y)
 }
 
 //delete a list item
-void DeleteEdge(struct ListEdge* lstp)
+void DeleteEdge(struct list_edge* lstp)
 {
-	struct List* del = lstp->start;
+	struct list* del = lstp->start;
 	lstp->start = lstp->start->next;
 	if (lstp->start == NULL)
 		lstp->end = NULL;
@@ -51,10 +51,10 @@ void DeleteEdge(struct ListEdge* lstp)
 }
 
 //list cleaning
-void Clear(struct ListEdge* list)
+void Clear(struct list_edge* list)
 {
-	struct List* del = list->start;
-	struct List* temp;
+	struct list* del = list->start;
+	struct list* temp;
 	while (del != NULL)
 	{
 		temp = del;

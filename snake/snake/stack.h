@@ -1,19 +1,19 @@
-struct ListEdge
+struct list_edge
 {
-	struct List*start;
-	struct List*end;
+	struct list* start;
+	struct list* end;
 };
 
-struct List
+struct list
 {
 	int wt_x;
 	int wt_y;
 	int addr_x;
 	int addr_y;
-	struct List*next;
+	struct list* next;
 };
 
-void Init(struct ListEdge * lstp);
-int Add(struct ListEdge* lstp, int x, int y, int a_x, int a_y);
-void DeleteEdge(struct ListEdge* lstp);
-void Clear(struct ListEdge* list);
+void Init(struct list_edge* lstp);
+int Add(struct list_edge* lstp, int x, int y, int a_x, int a_y);
+void DeleteEdge(struct list_edge* lstp);
+void Clear(struct list_edge* list);

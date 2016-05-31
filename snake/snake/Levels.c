@@ -5,14 +5,25 @@
 #include <conio.h>
 #define SIZE 15
 
-//level initialization
-void init_lvl(char* arr[], int* head_x, int* head_y, int* tail_x, int* tail_y, int* coordinate_x, int* coordinate_y, int* way_x, int* way_y, int* wayt_x, int* wayt_y, struct ListEdge* Edge, int* length, int* flag)
+struct snake
 {
-	*head_x = 6;
-	*head_y = 1;
-	arr[*head_x][*head_y] = '>';
-	*tail_x = *head_x;
-	*tail_y = *head_y;
+	int head_x;
+	int head_y;
+	int tail_x;
+	int tail_y;
+	int wayh_x;
+	int wayh_y;
+	int wayt_x;
+	int wayt_y;
+};
+//level initialization
+void init_lvl(char* arr[], struct snake* snk, int* coordinate_x, int* coordinate_y, struct list_edge* Edge, int* length, int* flag)
+{
+	snk->head_x = 6;
+	snk->head_y = 1;
+	arr[snk->head_x][snk->head_y] = '>';
+	snk->tail_x = snk->head_x;
+	snk->tail_y = snk->head_y;
 	do
 	{
 		*coordinate_x = 0 + rand() % SIZE;
@@ -20,10 +31,10 @@ void init_lvl(char* arr[], int* head_x, int* head_y, int* tail_x, int* tail_y, i
 	} while (arr[*coordinate_x][*coordinate_y] != '.');
 	arr[*coordinate_x][*coordinate_y] = '*';
 
-	*way_x = 0;
-	*way_y = 1;
-	*wayt_x = *way_x;
-	*wayt_y = *way_y;
+	snk->wayh_x = 0;
+	snk->wayh_y = 1;
+	snk->wayt_x = snk->wayh_x;
+	snk->wayt_y = snk->wayh_y;
 	*length = 1;
 	*flag = 0;
 

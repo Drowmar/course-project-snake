@@ -11,6 +11,19 @@
 #include <time.h>
 #define SIZE 15
 
+//structure for snake
+struct snake
+{
+	int head_x;
+	int head_y;
+	int tail_x;
+	int tail_y;
+	int wayh_x;
+	int wayh_y;
+	int wayt_x;
+	int wayt_y;
+};
+
 //structure for bullets
 struct war
 {
@@ -35,7 +48,7 @@ char kind_edge(int x, int y)
 }
 
 //deallocation
-void Free (char *arr[], struct war* num_v, struct ListEdge *edge)
+void Free(char *arr[], struct war* num_v, struct list_edge *edge)
 {
 	int i = 0;
 	for (i = 0; i < SIZE; i++)
@@ -62,11 +75,17 @@ int score = 1;
 void main(void)
 {
 	struct war* num_v = NULL;
+	struct snake my_snk;
 	char** arr = NULL;
-	int flag_level = 0, kind = 0, wx, wy, num_of_v = 0, i1, j1, level, choice, defficulty, i, j, fi, coordinate_x, coordinate_y, flag, head_x, head_y, way_x, way_y, tail_x, tail_y, wayt_x, wayt_y, length;
+	int flag_level = 0, kind = 0, num_of_v = 0, tmp_x, tmp_y;
+	int j1, level, choice, defficulty, i, j, i1, coordinate_x, coordinate_y;
+	int flag, length;
 	char press, main_flag = 0;
-	puts("Game snake.\nYou control the snake, but the snake is moving itself.\nYour goal is to eat the food and grow as much as possible.\nYou win when your snake will occupy the entire field.\nControl:\nw - up;\na - right;\nd - left;\ns - down;\nIf you want pause/exit - press 0(number).\nIf you choose modern, you can shoot pressing the SPACE.");
-	struct ListEdge Edge;
+	puts("Game snake.\nYou control the snake, but the snake is moving itself.");
+	puts("Your goal is to eat the food and grow as much as possible.");
+	puts("You win when your snake will occupy the entire field.\nControl:\nw - up; \na - right; \nd - left; \ns - down;");
+	puts("If you want pause / exit - press 0(number).\nIf you choose modern, you can shoot pressing the SPACE.");
+	struct list_edge Edge;
 	Init(&Edge);
 	srand((unsigned int)time(NULL));
 	COORD position;
@@ -99,9 +118,9 @@ void main(void)
 			if (arr[i] == NULL)
 			{
 				printf("ERROR");
-				for (fi = 0; fi <= i; fi++)
+				for (j = 0; j <= i; j++)
 				{
-					free(arr[fi]);
+					free(arr[j]);
 				}
 				free(arr);
 				return;
@@ -150,10 +169,10 @@ void main(void)
 		}
 
 		system("cls"); //clear the console
-		init_lvl(arr, &head_x, &head_y, &tail_x, &tail_y, &coordinate_x, &coordinate_y, &way_x, &way_y, &wayt_x, &wayt_y, &Edge, &length, &flag);
+		init_lvl(arr, &my_snk, &coordinate_x, &coordinate_y, &Edge, &length, &flag);
 		level = 1;
 
-		while (head_x < SIZE && head_y < SIZE && head_x >= 0 && head_y >= 0)
+		while (my_snk.head_x < SIZE && my_snk.head_y < SIZE && my_snk.head_x >= 0 && my_snk.head_y >= 0)
 		{
 			//redraw the console   
 			SetConsoleCursorPosition(hConsole, position);
@@ -170,20 +189,20 @@ void main(void)
 				switch (press)
 				{
 				case 'w':
-					way_x = -1;
-					way_y = 0;
+					my_snk.wayh_x = -1;
+					my_snk.wayh_y = 0;
 					break;
 				case 'a':
-					way_x = 0;
-					way_y = -1;
+					my_snk.wayh_x = 0;
+					my_snk.wayh_y = -1;
 					break;
 				case 'd':
-					way_x = 0;
-					way_y = 1;
+					my_snk.wayh_x = 0;
+					my_snk.wayh_y = 1;
 					break;
 				case 's':
-					way_x = 1;
-					way_y = 0;
+					my_snk.wayh_x = 1;
+					my_snk.wayh_y = 0;
 					break;
 				case '0':
 					printf("\nInput something to start.\nPut 0 to exit.\n");
@@ -197,23 +216,23 @@ void main(void)
 					{
 						num_of_v++;
 						length--;
-						arr[tail_x][tail_y] = '.';
+						arr[my_snk.tail_x][my_snk.tail_y] = '.';
 
 						//the movement of the tail, depending on the presence of the snake turn
 						if (Edge.start != NULL)
 						{
-							if ((tail_x == Edge.start->addr_x) && (tail_y == Edge.start->addr_y))
+							if ((my_snk.tail_x == Edge.start->addr_x) && (my_snk.tail_y == Edge.start->addr_y))
 							{
-								wayt_x = Edge.start->wt_x;
-								wayt_y = Edge.start->wt_y;
+								my_snk.wayt_x = Edge.start->wt_x;
+								my_snk.wayt_y = Edge.start->wt_y;
 								DeleteEdge(&Edge);
 							}
 						}
-						tail_x += wayt_x;
-						tail_y += wayt_y;
-						arr[tail_x][tail_y] = kind_edge(wayt_x, wayt_y);
-						i1 = head_x;
-						j1 = head_y;
+						my_snk.tail_x += my_snk.wayt_x;
+						my_snk.tail_y += my_snk.wayt_y;
+						arr[my_snk.tail_x][my_snk.tail_y] = kind_edge(my_snk.wayt_x, my_snk.wayt_y);
+						i1 = my_snk.head_x;
+						j1 = my_snk.head_y;
 
 						//the creation of the shot and all the checks for him
 						num_v = (struct war*)realloc(num_v, num_of_v * sizeof(struct war));
@@ -221,31 +240,32 @@ void main(void)
 						{
 							Free(arr, num_v, &Edge);
 						}
-						num_v[num_of_v - 1].wayv_x = way_x;
-						num_v[num_of_v - 1].wayv_y = way_y;
-						num_v[num_of_v - 1].coord_x = head_x;
-						num_v[num_of_v - 1].coord_y = head_y;
+						num_v[num_of_v - 1].wayv_x = my_snk.wayh_x;
+						num_v[num_of_v - 1].wayv_y = my_snk.wayh_y;
+						num_v[num_of_v - 1].coord_x = my_snk.head_x;
+						num_v[num_of_v - 1].coord_y = my_snk.head_y;
 						i1 = num_v[num_of_v - 1].coord_x;
 						j1 = num_v[num_of_v - 1].coord_y;
-						wx = num_v[i].wayv_x;
-						wy = num_v[i].wayv_y;
-						if (i1 + wx < SIZE && j1 + wy < SIZE && i1 + wx >= 0 && j1 + wy >= 0)
+						tmp_x = num_v[i].wayv_x;
+						tmp_y = num_v[i].wayv_y;
+						if (i1 + tmp_x < SIZE && j1 + tmp_y < SIZE && i1 + tmp_x >= 0 && j1 + tmp_y >= 0)
 						{
-							if (arr[i1 + wx][j1 + wy] == '*')
+							if (arr[i1 + tmp_x][j1 + tmp_y] == '*')
 							{
-								arr[i1 + wx][j1 + wy] = '.';
+								arr[i1 + tmp_x][j1 + tmp_y] = '.';
 								un_init(num_v, i);
 								do
 								{
 									coordinate_x = 0 + rand() % SIZE;
 									coordinate_y = 0 + rand() % SIZE;
-								} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
+								} while (arr[coordinate_x][coordinate_y] != '.' || 
+									(coordinate_x == my_snk.tail_x && coordinate_y == my_snk.tail_y));
 								arr[coordinate_x][coordinate_y] = '*';
 								continue;
 							}
-							arr[i1 + wx][j1 + wy] = 'o';
-							num_v[num_of_v - 1].coord_x += wx;
-							num_v[num_of_v - 1].coord_y += wy;
+							arr[i1 + tmp_x][j1 + tmp_y] = 'o';
+							num_v[num_of_v - 1].coord_x += tmp_x;
+							num_v[num_of_v - 1].coord_y += tmp_y;
 						}
 					}
 				}
@@ -255,7 +275,7 @@ void main(void)
 				//if you press a lot of buttons
 				while (_kbhit() != 0)
 					((char)_getch() != '\n');
-				if (Add(&Edge, way_x, way_y, head_x, head_y) == 1)
+				if (Add(&Edge, my_snk.wayh_x, my_snk.wayh_y, my_snk.head_x, my_snk.head_y) == 1)
 				{
 					Clear(&Edge);
 					for (i = 0; i < SIZE; i++)
@@ -276,76 +296,79 @@ void main(void)
 					{
 						i1 = num_v[i].coord_x;
 						j1 = num_v[i].coord_y;
-						wx = num_v[i].wayv_x;
-						wy = num_v[i].wayv_y;
+						tmp_x = num_v[i].wayv_x;
+						tmp_y = num_v[i].wayv_y;
 						arr[i1][j1] = '.';
-						if (i1 + wx < SIZE && j1 + wy < SIZE && i1 + wx >= 0 && j1 + wy >= 0)
+						if (i1 + tmp_x < SIZE && j1 + tmp_y < SIZE && i1 + tmp_x >= 0 && j1 + tmp_y >= 0)
 						{
 							//hit the wall
-							if (arr[i1 + wx][j1 + wy] == '%')
+							if (arr[i1 + tmp_x][j1 + tmp_y] == '%')
 							{
-								arr[i1 + wx][j1 + wy] = '.';
+								arr[i1 + tmp_x][j1 + tmp_y] = '.';
 								un_init(num_v, i);
 								continue;
 							}
 
 							//hit the food
-							if (arr[i1 + wx][j1 + wy] == '*')
+							if (arr[i1 + tmp_x][j1 + tmp_y] == '*')
 							{
-								arr[i1 + wx][j1 + wy] = '.';
+								arr[i1 + tmp_x][j1 + tmp_y] = '.';
 								un_init(num_v, i);
 								do
 								{
 									coordinate_x = 0 + rand() % SIZE;
 									coordinate_y = 0 + rand() % SIZE;
-								} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
+								} while (arr[coordinate_x][coordinate_y] != '.' || 
+									(coordinate_x == my_snk.tail_x && coordinate_y == my_snk.tail_y));
 								arr[coordinate_x][coordinate_y] = '*';
 								continue;
 							}
 
 							//hit the snake
-							if (arr[i1 + wx][j1 + wy] != '.')
+							if (arr[i1 + tmp_x][j1 + tmp_y] != '.')
 							{
 								un_init(num_v, i);
 								continue;
 							}
 						}
-						if ((i1 + (wx * 2)) < SIZE && (j1 + (wy * 2)) < SIZE && (i1 + (wx * 2)) >= 0 && (j1 + (wy * 2)) >= 0)
+						if ((i1 + (tmp_x * 2)) < SIZE && (j1 + (tmp_y * 2)) < SIZE && 
+							(i1 + (tmp_x * 2)) >= 0 && (j1 + (tmp_y * 2)) >= 0)
 						{
 							//hit the food
-							if (arr[i1 + wx * 2][j1 + wy * 2] == '*')
+							if (arr[i1 + tmp_x * 2][j1 + tmp_y * 2] == '*')
 							{
-								arr[i1 + wx * 2][j1 + wy * 2] = '.';
+								arr[i1 + tmp_x * 2][j1 + tmp_y * 2] = '.';
 								un_init(num_v, i);
 								do
 								{
 									coordinate_x = 0 + rand() % SIZE;
 									coordinate_y = 0 + rand() % SIZE;
-								} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
+								} while (arr[coordinate_x][coordinate_y] != '.' || 
+									(coordinate_x == my_snk.tail_x && coordinate_y == my_snk.tail_y));
 								arr[coordinate_x][coordinate_y] = '*';
 								continue;
 							}
 
 							//hit the wall
-							if (arr[i1 + wx * 2][j1 + wy * 2] == '%')
+							if (arr[i1 + tmp_x * 2][j1 + tmp_y * 2] == '%')
 							{
-								arr[i1 + wx * 2][j1 + wy * 2] = '.';
+								arr[i1 + tmp_x * 2][j1 + tmp_y * 2] = '.';
 								un_init(num_v, i);
 								continue;
 							}
 
 							//hit the snake
-							if (arr[i1 + wx * 2][j1 + wy * 2] != '.')
+							if (arr[i1 + tmp_x * 2][j1 + tmp_y * 2] != '.')
 							{
 								un_init(num_v, i);
 								continue;
 							}
 
 							//moving bullet
-							if (arr[i1 + wx * 2][j1 + wy * 2] == '.')
+							if (arr[i1 + tmp_x * 2][j1 + tmp_y * 2] == '.')
 							{
-								num_v[i].coord_x += wx * 2;
-								num_v[i].coord_y += wy * 2;
+								num_v[i].coord_x += tmp_x * 2;
+								num_v[i].coord_y += tmp_y * 2;
 								i1 = num_v[i].coord_x;
 								j1 = num_v[i].coord_y;
 								arr[i1][j1] = 'o';
@@ -358,14 +381,15 @@ void main(void)
 			}
 
 			//snake movement
-			arr[tail_x][tail_y] = '.';
-			head_x += way_x;
-			head_y += way_y;
-			if ((head_x >= SIZE || head_y >= SIZE || head_x < 0 || head_y < 0) || (arr[head_x][head_y] != '.' && arr[head_x][head_y] != '*'))
+			arr[my_snk.tail_x][my_snk.tail_y] = '.';
+			my_snk.head_x += my_snk.wayh_x;
+			my_snk.head_y += my_snk.wayh_y;
+			if ((my_snk.head_x >= SIZE || my_snk.head_y >= SIZE || my_snk.head_x < 0 ||
+				my_snk.head_y < 0) || (arr[my_snk.head_x][my_snk.head_y] != '.' && arr[my_snk.head_x][my_snk.head_y] != '*'))
 				break;
 
 			//snake eating
-			if (arr[head_x][head_y] == '*')
+			if (arr[my_snk.head_x][my_snk.head_y] == '*')
 			{
 				if (length + 1 == SIZE * SIZE)
 				{
@@ -378,10 +402,10 @@ void main(void)
 				{
 					coordinate_x = 0 + rand() % SIZE;
 					coordinate_y = 0 + rand() % SIZE;
-				} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == tail_x && coordinate_y == tail_y));
+				} while (arr[coordinate_x][coordinate_y] != '.' || (coordinate_x == my_snk.tail_x && coordinate_y == my_snk.tail_y));
 				arr[coordinate_x][coordinate_y] = '*';
-				tail_x -= wayt_x;
-				tail_y -= wayt_y;
+				my_snk.tail_x -= my_snk.wayt_x;
+				my_snk.tail_y -= my_snk.wayt_y;
 				length++;
 				score++;
 			}
@@ -389,18 +413,18 @@ void main(void)
 			//the movement of the tail, depending on the presence of the snake turn
 			if (Edge.start != NULL)
 			{
-				if ((tail_x == Edge.start->addr_x) && (tail_y == Edge.start->addr_y))
+				if ((my_snk.tail_x == Edge.start->addr_x) && (my_snk.tail_y == Edge.start->addr_y))
 				{
-					wayt_x = Edge.start->wt_x;
-					wayt_y = Edge.start->wt_y;
+					my_snk.wayt_x = Edge.start->wt_x;
+					my_snk.wayt_y = Edge.start->wt_y;
 					DeleteEdge(&Edge);
 				}
 			}
-			tail_x += wayt_x;
-			tail_y += wayt_y;
-			arr[head_x][head_y] = kind_edge(way_x, way_y);
-			arr[tail_x][tail_y] = kind_edge(wayt_x, wayt_y);
-			flag_level = checkLevel(position, hConsole, &level, arr, &head_x, &head_y, &tail_x, &tail_y, &coordinate_x, &coordinate_y, &way_x, &way_y, &wayt_x, &wayt_y, &Edge, &length, &flag);
+			my_snk.tail_x += my_snk.wayt_x;
+			my_snk.tail_y += my_snk.wayt_y;
+			arr[my_snk.head_x][my_snk.head_y] = kind_edge(my_snk.wayh_x, my_snk.wayh_y);
+			arr[my_snk.tail_x][my_snk.tail_y] = kind_edge(my_snk.wayt_x, my_snk.wayt_y);
+			flag_level = check_level(position, hConsole, &level, arr, &my_snk, &coordinate_x, &coordinate_y, &Edge, &length, &flag);
 			if (flag_level == 1)
 			{
 				break;
@@ -426,7 +450,11 @@ void main(void)
 		}
 		if ((int)main_flag == 49)
 		{
-			puts("\nYou control the snake, but the snake is moving itself.\nYour goal is to eat the food and grow as much as possible.\nYou win when your snake will occupy the entire field.\nControl:\nw - up;\na - right;\nd - left;\ns - down;\nIf you want pause/exit - press 0(number).\nIf you choose modern, you can shoot pressing the SPACE.");
+
+			puts("Game snake.\nYou control the snake, but the snake is moving itself.");
+			puts("Your goal is to eat the food and grow as much as possible.");
+			puts("You win when your snake will occupy the entire field.\nControl:\nw - up; \na - right; \nd - left; \ns - down;");
+			puts("If you want pause / exit - press 0(number).\nIf you choose modern, you can shoot pressing the SPACE."); 
 			while ((int)main_flag != 13 && (int)main_flag != 48)
 			{
 				main_flag = _getch();
