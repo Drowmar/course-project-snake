@@ -50,5 +50,8 @@
     <ClInclude Include="checkLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="snake.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

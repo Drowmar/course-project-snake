@@ -89,6 +89,7 @@
     <ClInclude Include="checkLevel.h" />
     <ClInclude Include="levels.h" />
     <ClInclude Include="read.h" />
+    <ClInclude Include="snake.h" />
     <ClInclude Include="stack.h" />
     <ClInclude Include="writeArr.h" />
   </ItemGroup>
