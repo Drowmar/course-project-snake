@@ -7,8 +7,10 @@
 #define SIZE 15
 
 //level initialization
-void init_lvl(char* arr[], struct snake* snk, int* coordinate_x, int* coordinate_y, struct list_edge* Edge, int* length, int* flag)
+void init_lvl(char* arr[], struct snake* snk, struct list_edge* Edge, int* length, int* flag)
 {
+	srand((unsigned int)time(NULL));
+	int coordinate_x, coordinate_y;
 	snk->head_x = 6;
 	snk->head_y = 1;
 	arr[snk->head_x][snk->head_y] = '>';
@@ -16,10 +18,10 @@ void init_lvl(char* arr[], struct snake* snk, int* coordinate_x, int* coordinate
 	snk->tail_y = snk->head_y;
 	do
 	{
-		*coordinate_x = 0 + rand() % SIZE;
-		*coordinate_y = 0 + rand() % SIZE;
-	} while (arr[*coordinate_x][*coordinate_y] != '.');
-	arr[*coordinate_x][*coordinate_y] = '*';
+		coordinate_x = 0 + rand() % SIZE;
+		coordinate_y = 0 + rand() % SIZE;
+	} while (arr[coordinate_x][coordinate_y] != '.');
+	arr[coordinate_x][coordinate_y] = '*';
 
 	snk->wayh_x = 0;
 	snk->wayh_y = 1;
@@ -38,12 +40,12 @@ void init_lvl(char* arr[], struct snake* snk, int* coordinate_x, int* coordinate
 }
 
 //creating fields for a certain level
-int lvl_2(char* arr[])
+int lvl(char* arr[], char* level)
 {
 	int i, j;
-	FILE *f1;
+	FILE *f;
 	char ch = ' ';
-	if ((f1 = fopen("level2.txt", "r")) == NULL)
+	if ((f = fopen(level, "r")) == NULL)
 	{
 		puts("Can't open file.");
 		return 1;
@@ -52,143 +54,11 @@ int lvl_2(char* arr[])
 	{
 		for (j = 0; j < SIZE; j++)
 		{
-			(void)fscanf_s(f1, "%c", &ch);
+			(void)fscanf_s(f, "%c", &ch);
 			arr[i][j] = ch;
 		}
-		(void)fscanf_s(f1, "%c", &ch);
+		(void)fscanf_s(f, "%c", &ch);
 	}
-	fclose(f1);
-	return 0;
-}
-int lvl_3(char* arr[])
-{
-	int i, j;
-	FILE *f1;
-	char ch = ' ';
-	if ((f1 = fopen("level3.txt", "r")) == NULL)
-	{
-		puts("Can't open file.");
-		return 1;
-	}
-	for (i = 0; i < SIZE; i++)
-	{
-		for (j = 0; j < SIZE; j++)
-		{
-			(void)fscanf_s(f1, "%c", &ch);
-			arr[i][j] = ch;
-		}
-		(void)fscanf_s(f1, "%c", &ch);
-	}
-	fclose(f1);
-	return 0;
-}
-int lvl_4(char* arr[])
-{
-	int i, j;
-	FILE *f1;
-	char ch = ' ';
-	if ((f1 = fopen("level4.txt", "r")) == NULL)
-	{
-		puts("Can't open file.");
-		return 1;
-	}
-	for (i = 0; i < SIZE; i++)
-	{
-		for (j = 0; j < SIZE; j++)
-		{
-			(void)fscanf_s(f1, "%c", &ch);
-			arr[i][j] = ch;
-		}
-		(void)fscanf_s(f1, "%c", &ch);
-	}
-	fclose(f1);
-	return 0;
-}
-int lvl_5(char* arr[])
-{
-	int i, j;
-	FILE *f1;
-	char ch = ' ';
-	if ((f1 = fopen("level5.txt", "r")) == NULL)
-	{
-		puts("Can't open file.");
-		return 1;
-	}
-	for (i = 0; i < SIZE; i++)
-	{
-		for (j = 0; j < SIZE; j++)
-		{
-			(void)fscanf_s(f1, "%c", &ch);
-			arr[i][j] = ch;
-		}
-		(void)fscanf_s(f1, "%c", &ch);
-	}
-	fclose(f1);
-	return 0;
-}
-int lvl_6(char* arr[])
-{
-	int i, j;
-	FILE *f1;
-	char ch = ' ';
-	if ((f1 = fopen("level6.txt", "r")) == NULL)
-	{
-		puts("Can't open file.");
-		return 1;
-	}
-	for (i = 0; i < SIZE; i++)
-	{
-		for (j = 0; j < SIZE; j++)
-		{
-			(void)fscanf_s(f1, "%c", &ch);
-			arr[i][j] = ch;
-		}
-		(void)fscanf_s(f1, "%c", &ch);
-	}
-	fclose(f1);
-	return 0;
-}
-int lvl_7(char* arr[])
-{
-	int i, j;
-	FILE *f1;
-	char ch = ' ';
-	if ((f1 = fopen("level7.txt", "r")) == NULL)
-	{
-		puts("Can't open file.");
-		return 1;
-	}
-	for (i = 0; i < SIZE; i++)
-	{
-		for (j = 0; j < SIZE; j++)
-		{
-			(void)fscanf_s(f1, "%c", &ch);
-			arr[i][j] = ch;
-		}
-		(void)fscanf_s(f1, "%c", &ch);
-	}
-	fclose(f1);
-	return 0;
-}
-int lvl_8(char* arr[])
-{
-	int i, j;
-	FILE *f1;
-	char ch = ' ';
-	if ((f1 = fopen("level8.txt", "r")) == NULL)
-	{
-		puts("Can't open file.");
-		return 1;
-	}
-	for (i = 0; i < SIZE; i++)
-	{
-		for (j = 0; j < SIZE; j++)
-		{
-			(void)fscanf_s(f1, "%c", &ch);
-			arr[i][j] = ch;
-		}
-		(void)fscanf_s(f1, "%c", &ch);
-	}
-	fclose(f1);
+	fclose(f);
 	return 0;
 }

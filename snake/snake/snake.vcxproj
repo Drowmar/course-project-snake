@@ -77,9 +77,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="checkLevel.c" />
+    <ClCompile Include="complexity.c" />
+    <ClCompile Include="eating.c" />
+    <ClCompile Include="hitBullet.c" />
     <ClCompile Include="Levels.c" />
     <ClCompile Include="read.c" />
-    <ClCompile Include="snake.c">
+    <ClCompile Include="main.c">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
     </ClCompile>
     <ClCompile Include="stack.c" />
@@ -87,6 +90,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="checkLevel.h" />
+    <ClInclude Include="complexity.h" />
+    <ClInclude Include="eating.h" />
+    <ClInclude Include="hitBullet.h" />
     <ClInclude Include="levels.h" />
     <ClInclude Include="read.h" />
     <ClInclude Include="snake.h" />

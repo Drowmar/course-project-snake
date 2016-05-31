@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="snake.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Levels.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -31,6 +28,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="checkLevel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="complexity.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hitBullet.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="eating.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51,6 +60,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="snake.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="complexity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hitBullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="eating.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

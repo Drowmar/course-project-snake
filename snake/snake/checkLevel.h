@@ -1,1 +1,1 @@
-int checkl_level(COORD position, HANDLE hConsole, int* level, char* arr[], struct snake* snk, int* coordinate_x, int* coordinate_y, struct list_edge* Edge, int* length, int* flag);
+int check_level(COORD position, HANDLE hConsole, int *level, char* arr[], struct snake* snk, struct list_edge* Edge, int* length, int* flag);
