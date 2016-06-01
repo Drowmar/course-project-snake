@@ -18,57 +18,57 @@
     <ClCompile Include="Levels.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stack.c">
+    <ClCompile Include="CheckLevel.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="read.c">
+    <ClCompile Include="Complexity.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="writeArr.c">
+    <ClCompile Include="Eating.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="checkLevel.c">
+    <ClCompile Include="HitBullet.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.c">
+    <ClCompile Include="Main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="complexity.c">
+    <ClCompile Include="Read.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hitBullet.c">
+    <ClCompile Include="Stack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="eating.c">
+    <ClCompile Include="WriteArr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="levels.h">
+    <ClInclude Include="CheckLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="stack.h">
+    <ClInclude Include="Complexity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="read.h">
+    <ClInclude Include="Eating.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="writeArr.h">
+    <ClInclude Include="HitBullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="checkLevel.h">
+    <ClInclude Include="Levels.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="snake.h">
+    <ClInclude Include="Read.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="complexity.h">
+    <ClInclude Include="Snake.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hitBullet.h">
+    <ClInclude Include="Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="eating.h">
+    <ClInclude Include="WriteArr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

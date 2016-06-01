@@ -1,6 +1,6 @@
 #include "Windows.h"
 #include <time.h>
-#include "snake.h"
+#include "Snake.h"
 #define SIZE 15
 
 //disappearance of the bullet

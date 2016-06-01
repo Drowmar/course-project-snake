@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "stack.h"
+#include "Stack.h"
 
 //stack initialization
 void Init(struct list_edge * lstp)
@@ -14,11 +14,8 @@ void Init(struct list_edge * lstp)
 //adding to the list
 int Add(struct list_edge* lstp, int x, int y, int a_x, int a_y)
 {
-	struct list* temp = (struct list*)malloc(sizeof(struct list));
-	if (temp == NULL)
-	{
-		return 1;
-	}
+	struct list* temp = NULL;
+	memory_m(temp, 1, struct list);
 
 	temp->next = NULL;
 	temp->wt_x = x;

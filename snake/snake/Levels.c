@@ -1,9 +1,12 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <conio.h>
-#include "stack.h"
-#include "writeArr.h"
-#include "snake.h"
-#include "Windows.h"
+#include <string.h>
+#include <time.h>
+#include "Stack.h"
+#include "Levels.h"
+#include "WriteArr.h"
+#include "Snake.h"
 #define SIZE 15
 
 //level initialization
@@ -45,11 +48,7 @@ int lvl(char* arr[], char* level)
 	int i, j;
 	FILE *f;
 	char ch = ' ';
-	if ((f = fopen(level, "r")) == NULL)
-	{
-		puts("Can't open file.");
-		return 1;
-	}
+	open(f, level, "r");
 	for (i = 0; i < SIZE; i++)
 	{
 		for (j = 0; j < SIZE; j++)

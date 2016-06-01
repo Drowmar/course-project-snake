@@ -76,28 +76,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="checkLevel.c" />
-    <ClCompile Include="complexity.c" />
-    <ClCompile Include="eating.c" />
-    <ClCompile Include="hitBullet.c" />
+    <ClCompile Include="CheckLevel.c" />
+    <ClCompile Include="Complexity.c" />
+    <ClCompile Include="Eating.c" />
+    <ClCompile Include="HitBullet.c" />
     <ClCompile Include="Levels.c" />
-    <ClCompile Include="read.c" />
-    <ClCompile Include="main.c">
+    <ClCompile Include="Read.c" />
+    <ClCompile Include="Main.c">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
     </ClCompile>
-    <ClCompile Include="stack.c" />
-    <ClCompile Include="writeArr.c" />
+    <ClCompile Include="Stack.c" />
+    <ClCompile Include="WriteArr.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="checkLevel.h" />
-    <ClInclude Include="complexity.h" />
-    <ClInclude Include="eating.h" />
-    <ClInclude Include="hitBullet.h" />
-    <ClInclude Include="levels.h" />
-    <ClInclude Include="read.h" />
-    <ClInclude Include="snake.h" />
-    <ClInclude Include="stack.h" />
-    <ClInclude Include="writeArr.h" />
+    <ClInclude Include="CheckLevel.h" />
+    <ClInclude Include="Complexity.h" />
+    <ClInclude Include="Eating.h" />
+    <ClInclude Include="HitBullet.h" />
+    <ClInclude Include="Levels.h" />
+    <ClInclude Include="Read.h" />
+    <ClInclude Include="Snake.h" />
+    <ClInclude Include="Stack.h" />
+    <ClInclude Include="WriteArr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

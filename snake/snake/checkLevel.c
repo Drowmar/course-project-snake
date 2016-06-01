@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <conio.h>
 #include "Windows.h"
-#include "levels.h"
-#define MAX_LONG 5
+#include "Levels.h"
+#define MAX_LONG 15
 #define SIZE 15
 
 //check the length of the snake to initialize level

@@ -4,15 +4,15 @@
 #include <string.h>
 #include <time.h>
 #include "Windows.h"
-#include "levels.h"
-#include "snake.h"
-#include "stack.h"
-#include "writeArr.h"
-#include "read.h"
-#include "checkLevel.h"
-#include "complexity.h"
-#include "eating.h"
-#include "hitBullet.h"
+#include "Levels.h"
+#include "Snake.h"
+#include "Stack.h"
+#include "WriteArr.h"
+#include "Read.h"
+#include "CheckLevel.h"
+#include "Complexity.h"
+#include "Eating.h"
+#include "HitBullet.h"
 #define SIZE 15
 
 //snake drawing selection
@@ -38,7 +38,7 @@ void write_help()
 }
 
 //deallocation
-void Free(char *arr[], struct war* num_v, struct list_edge *edge)
+void free_all(char *arr[], struct war* num_v, struct list_edge *edge)
 {
 	int i = 0;
 	for (i = 0; i < SIZE; i++)
@@ -58,7 +58,7 @@ void main(void)
 	struct snake my_snk;
 	char** arr = NULL;
 	int flag_level = 0, kind = 0, num_of_v = 0, tmp_x, tmp_y;
-	int j1, level, difficulty, i, j, i1, coordinate_x, coordinate_y;
+	int j1, level, difficulty, i, j, i1;
 	int flag, length;
 	char press, main_flag = 0; 
 	write_help();
@@ -74,36 +74,10 @@ void main(void)
 		//memory allocation
 		main_flag = 0;
 		num_of_v = 0;
-		num_v = (struct war*)malloc(0 * sizeof(struct war));
-		if (num_v == NULL)
-		{
-			puts("Out if memory.");
-			return;
-		}
 
-		arr = (char**)malloc(SIZE * sizeof(char*));
-		if (arr == NULL)
-		{
-			printf("ERROR");
-			free(arr);
-			return;
-		}
-		for (i = 0; i < SIZE; i++)
-		{
-			arr[i] = NULL;
-			arr[i] = (char*)malloc(SIZE * sizeof(char));
-			if (arr[i] == NULL)
-			{
-				printf("ERROR");
-				for (j = 0; j <= i; j++)
-				{
-					free(arr[j]);
-				}
-				free(arr);
-				return;
-			}
-		}
-		
+		memory(num_v, 0, struct war);
+		memory_arr(arr);
+
 		if ((difficulty = complexity()) == 1)
 			break;
 		//choose the type of game
@@ -191,11 +165,7 @@ void main(void)
 						j1 = my_snk.head_y;
 
 						//the creation of the shot and all the checks for him
-						num_v = (struct war*)realloc(num_v, num_of_v * sizeof(struct war));
-						if (num_v == NULL)
-						{
-							Free(arr, num_v, &Edge);
-						}
+						memory_r(num_v, num_of_v, struct war);
 
 						num_v[num_of_v - 1].wayv_x = my_snk.wayh_x;
 						num_v[num_of_v - 1].wayv_y = my_snk.wayh_y;
@@ -302,7 +272,7 @@ void main(void)
 			}
 		}
 
-		Free(arr, num_v, &Edge);
+		free_all(arr, num_v, &Edge);
 		system("cls");
 		if (flag_level == 1)
 		{

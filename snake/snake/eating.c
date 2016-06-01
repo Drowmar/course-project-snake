@@ -1,7 +1,7 @@
 #include <time.h>
 #include "Windows.h"
 #include <stdio.h>
-#include "snake.h"
+#include "Snake.h"
 #define SIZE 15
 //snake eating
 

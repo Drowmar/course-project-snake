@@ -1,3 +1,4 @@
+#pragma once
 struct list_edge
 {
 	struct list* start;
@@ -17,3 +18,10 @@ void Init(struct list_edge* lstp);
 int Add(struct list_edge* lstp, int x, int y, int a_x, int a_y);
 void DeleteEdge(struct list_edge* lstp);
 void Clear(struct list_edge* list);
+
+#define memory_m(pointer, size, type)\
+	pointer = (type*)malloc(size * sizeof(type)); \
+	if (pointer == NULL){\
+		puts("Out if memory."); \
+		return 1; \
+	}
